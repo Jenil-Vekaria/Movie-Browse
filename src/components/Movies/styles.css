@@ -1,0 +1,19 @@
+.movies-container {
+	padding: 20px 30px;
+}
+
+.badge {
+	font-size: 15px;
+	font-family: "Open Sans", sans-serif;
+	margin-right: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.primary {
+	background-color: var(--nav-item-select);
+}
+
+.selected {
+	background-color: var(--purple);
+}
