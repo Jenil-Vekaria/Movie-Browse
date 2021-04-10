@@ -7,8 +7,6 @@
 html,
 body {
 	font-family: "Oswald", sans-serif;
-}
-
-.app {
-	display: flex;
+	color: white;
+	background-color: var(--background);
 }

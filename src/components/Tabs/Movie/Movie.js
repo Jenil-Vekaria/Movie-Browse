@@ -1,7 +1,8 @@
 import React from 'react';
-import Search from '../Search/Search';
-import styles from './Movietab.css';
-const MoviesTab = () => {
+import styles from './styles.css';
+import { Search } from '../../Search/Search.js';
+
+export const Movie = () => {
     return (
         <div className="movietab-container">
             <Search />
@@ -9,4 +10,3 @@ const MoviesTab = () => {
     );
 };
 
-export default MoviesTab;

@@ -1,7 +1,7 @@
 .navbar-container {
-	width: 70px;
+	width: 60px;
 	height: 100vh;
-	background-color: #151c29;
+	background-color: var(--nav-bar);
 	position: fixed;
 }
 
@@ -15,19 +15,26 @@
 	height: 100%;
 }
 
+.active {
+	background-color: var(--nav-item-select);
+}
+
 .nav-item {
-	width: 100%;
 	text-align: center;
 	padding: 20px 0px;
 	transition: 0.3s ease;
 }
 
-.nav-item:last-child {
+a {
+	width: 100%;
+}
+
+a:last-child {
 	margin-top: auto;
 }
 
 .nav-item:hover {
-	background-color: #435572;
+	background-color: var(--nav-item-select);
 }
 
 /* Small Screen */
@@ -41,8 +48,4 @@
 	.navbar-list {
 		flex-direction: row;
 	}
-}
-
-/* Large Screen */
-@media only screen and (min-width: 600px) {
 }

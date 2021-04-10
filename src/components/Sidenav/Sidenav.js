@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiSearch, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
-import styles from './Sidenav.css';
+import { Link } from 'react-router-dom';
+import styles from './styles.css';
 
 export const Sidenav = () => {
-    let iconStyles = { color: "#F3F3F4", fontSize: "1.7em" };
 
+    const [tabNumber, settabNumber] = useState(0);
+
+    let iconStyles = { color: "#F3F3F4", fontSize: "1.7em" };
     return (
         <div className="navbar-container">
             <ul className="navbar-list">
-                <li className="nav-item">
-                    <FiSearch style={iconStyles} />
-                </li>
-                <li className="nav-item">
-                    <FiHeart style={iconStyles} />
-                </li>
-                <li className="nav-item">
-                    <FiUser style={iconStyles} />
-                </li>
-                <li className="nav-item">
-                    <FiLogOut style={iconStyles} />
-                </li>
+                <Link to="/search">
+                    <li className={`nav-item ${tabNumber === 0 ? 'active' : null}`} onClick={() => settabNumber(0)}>
+                        <FiSearch style={iconStyles} />
+                    </li>
+                </Link>
+                <Link to="/favourite">
+                    <li className={`nav-item ${tabNumber === 1 ? 'active' : null}`} onClick={() => settabNumber(1)}>
+                        <FiHeart style={iconStyles} />
+                    </li>
+                </Link>
+                <Link to="/user">
+                    <li className={`nav-item ${tabNumber === 2 ? 'active' : null}`} onClick={() => settabNumber(2)}>
+                        <FiUser style={iconStyles} />
+                    </li>
+                </Link>
+
+                <Link to="/search">
+                    <li className="nav-item" onClick={() => settabNumber(0)}>
+                        <FiLogOut style={iconStyles} />
+                    </li>
+                </Link>
             </ul>
         </div>
     );

@@ -1,0 +1,10 @@
+.user-profile-container {
+	margin-left: 60px;
+	height: 100vh;
+}
+
+@media only screen and (max-width: 600px) {
+	.user-profile-container {
+		margin-left: 0;
+	}
+}
