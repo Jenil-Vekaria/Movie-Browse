@@ -1,0 +1,23 @@
+.movie-card {
+	margin: 10px 0px;
+}
+
+.movie-title {
+	letter-spacing: 1px;
+	margin-top: 15px;
+}
+
+.movie-year {
+	color: #f3f3f4;
+	font-size: 13px;
+}
+
+.movie-poster {
+	box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s ease;
+	cursor: pointer;
+}
+
+.movie-poster:hover {
+	transform: scale(1.05);
+}
