@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { MovieTab } from './components/Tabs/Movie/MovieTab';
-import { Favourite } from './components/Tabs/Favourite/Favourite';
-import { UserProfile } from './components/Tabs/User Profile/UserProfile';
+import { MovieTab } from './components/Tabs/MovieTab/MovieTab';
+import { FavouriteTab } from './components/Tabs/FavouriteTab/FavouriteTab';
+import { UserTab } from './components/Tabs/UserTab/UserTab';
 import { Sidenav } from './components/Sidenav/Sidenav';
 
 import styles from './App.css';
@@ -16,8 +16,8 @@ export const App = () => {
 
       <Switch>
         <Route path="/search" extact component={MovieTab} />
-        <Route path="/favourite" extact component={Favourite} />
-        <Route path="/user" extact component={UserProfile} />
+        <Route path="/favourite" extact component={FavouriteTab} />
+        <Route path="/user" extact component={UserTab} />
         <Route path="/" extact component={MovieTab} />
       </Switch>
 

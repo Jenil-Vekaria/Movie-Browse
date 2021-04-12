@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Moviefilter = () => {
+export const MovieCategory = () => {
     return (
         <div>
 

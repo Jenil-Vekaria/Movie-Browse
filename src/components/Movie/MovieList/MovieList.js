@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Movie } from './Movie/Movie';
+import { MovieCard } from '../MovieCard/MovieCard';
 import styles from './styles.css';
-import { fetchPopular, fetchTopRated, fetchLatest, fetchUpcoming } from '../../api';
+import { fetchPopular, fetchTopRated, fetchLatest, fetchUpcoming } from '../../../api';
 
-export const Movies = () => {
+export const MovieList = () => {
+
     const [categoryIndex, setCategoryIndex] = useState(0);
     const categories = ["Popular", "Top Rated", "Upcoming", "Latest"];
     const [movies, setmovies] = useState([]);
 
     useEffect(() => {
-        let results;
+        let movies;
 
         if (categoryIndex === 0)
-            results = fetchPopular();
+            movies = fetchPopular();
         else if (categoryIndex === 1)
-            results = fetchTopRated();
+            movies = fetchTopRated();
         else if (categoryIndex === 2)
-            results = fetchUpcoming();
+            movies = fetchUpcoming();
         else
-            results = fetchLatest();
+            movies = fetchLatest();
 
-        results.then(({ results }) => {
-            setmovies(results);
+        movies.then((data) => {
+            setmovies(data);
         });
+
     }, [categoryIndex]);
+
 
     const handleCategoryChange = (index) => {
         if (index !== categoryIndex)
@@ -45,10 +48,10 @@ export const Movies = () => {
             </div>
 
             <br />
-            <div className="row row-cols-6">
+            <div className="row">
                 {
                     movies.map(movie => (
-                        <Movie movie={movie} key={movie.id} />
+                        <MovieCard movie={movie} key={movie.id} />
                     ))
                 }
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 
 
-export const Favourite = () => {
+export const FavouriteTab = () => {
     return (
         <div className="favourite-container">
             Favourite

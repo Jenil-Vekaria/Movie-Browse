@@ -7,7 +7,7 @@ export const Sidenav = () => {
 
     const [tabNumber, settabNumber] = useState(0);
 
-    let iconStyles = { color: "#F3F3F4", fontSize: "1.7em" };
+    let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
     return (
         <div className="navbar-container">
             <ul className="navbar-list">

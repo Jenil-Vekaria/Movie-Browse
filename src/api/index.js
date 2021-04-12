@@ -20,8 +20,9 @@ const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
 
 export const fetchPopular = async () => {
     try {
-        const { data } = await API.get(`/movie/popular?${requestHeader}`);
-        return data;
+        const { data: { results } } = await API.get(`/movie/popular?${requestHeader}`);
+
+        return results;
     } catch (error) {
         console.error(error);
     }
@@ -29,8 +30,9 @@ export const fetchPopular = async () => {
 
 export const fetchTopRated = async () => {
     try {
-        const { data } = await API.get(`/movie/top_rated?${requestHeader}`);
-        return data;
+        const { data: { results } } = await API.get(`/movie/top_rated?${requestHeader}`);
+
+        return results;
     } catch (error) {
         console.error(error);
     }
@@ -38,8 +40,9 @@ export const fetchTopRated = async () => {
 
 export const fetchUpcoming = async () => {
     try {
-        const { data } = await API.get(`/movie/upcoming?${requestHeader}`);
-        return data;
+        const { data: { results } } = await API.get(`/movie/upcoming?${requestHeader}`);
+
+        return results;
     } catch (error) {
         console.error(error);
     }
@@ -47,8 +50,9 @@ export const fetchUpcoming = async () => {
 
 export const fetchLatest = async () => {
     try {
-        const { data } = await API.get(`/movie/now_playing?${requestHeader}`);
-        return data;
+        const { data: { results } } = await API.get(`/movie/now_playing?${requestHeader}`);
+
+        return results;
     } catch (error) {
         console.error(error);
     }

@@ -1,0 +1,20 @@
+.movie-filter-container {
+	background-color: var(--filter-background);
+	position: fixed;
+	width: 260px;
+	height: 100%;
+	margin-top: 56px;
+}
+
+.title {
+	font-weight: 600;
+	letter-spacing: 1.2px;
+	margin: 25px;
+}
+
+.generes-title {
+	font-weight: 300;
+	letter-spacing: 1.2px;
+	font-size: 13px;
+	margin-left: 25px;
+}

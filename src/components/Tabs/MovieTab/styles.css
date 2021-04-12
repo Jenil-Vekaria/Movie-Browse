@@ -1,8 +1,11 @@
 .movietab-container {
-	margin-left: 60px;
+	margin-left: 50px;
 	height: 100vh;
 }
 
+.movie-container {
+	display: flex;
+}
 @media only screen and (max-width: 600px) {
 	.movietab-container {
 		margin-left: 0;
