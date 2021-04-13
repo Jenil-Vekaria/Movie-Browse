@@ -1,60 +1,71 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { MovieCard } from '../MovieCard/MovieCard';
+import { MovieCategory } from '../MovieCategory/MovieCategory';
+import { useDispatch } from 'react-redux';
+import { getPopular, getLatest, getTopRated, getUpcoming } from '../../../redux/actions/movie';
+
+
 import styles from './styles.css';
-import { fetchPopular, fetchTopRated, fetchLatest, fetchUpcoming } from '../../../api';
 
 export const MovieList = () => {
-
     const [categoryIndex, setCategoryIndex] = useState(0);
-    const categories = ["Popular", "Top Rated", "Upcoming", "Latest"];
-    const [movies, setmovies] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        let movies;
-
-        if (categoryIndex === 0)
-            movies = fetchPopular();
-        else if (categoryIndex === 1)
-            movies = fetchTopRated();
-        else if (categoryIndex === 2)
-            movies = fetchUpcoming();
-        else
-            movies = fetchLatest();
-
-        movies.then((data) => {
-            setmovies(data);
-        });
-
-    }, [categoryIndex]);
-
+        switch (categoryIndex) {
+            case 0:
+                dispatch(getPopular());
+                break;
+            case 1:
+                dispatch(getTopRated());
+                break;
+            case 2:
+                dispatch(getUpcoming());
+                break;
+            case 3:
+                dispatch(getLatest());
+                break;
+            default:
+                dispatch(getPopular());
+                break;
+        }
+    }, [categoryIndex, dispatch]);
 
     const handleCategoryChange = (index) => {
-        if (index !== categoryIndex)
+        if (index !== categoryIndex) {
             setCategoryIndex(index);
+        }
     };
+
+
+    const movies = useSelector((state) => state.movie[0]) || [];
 
     return (
         <div className="movies-container">
-            <h2 className="category-title">{categories[categoryIndex]}</h2>
-            <div className="category-group">
-                {
-                    categories.map((category, index) => (
-                        <span
-                            className={`badge rounded-pill ${categoryIndex === index ? 'selected' : 'primary'}`}
-                            key={index}
-                            onClick={() => handleCategoryChange(index)}>{category}</span>
-                    ))
-                }
-            </div>
+            <MovieCategory categoryIndex={categoryIndex} handleCategoryChange={handleCategoryChange} />
 
             <br />
-            <div className="row">
-                {
-                    movies.map(movie => (
-                        <MovieCard movie={movie} key={movie.id} />
-                    ))
-                }
-            </div>
+            {
+                movies.length === 0
+                    ?
+                    (
+                        <div class="spinner-border text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    )
+                    :
+                    (
+                        <div className="row">
+                            {
+                                movies.map(movie => (
+                                    <MovieCard movie={movie} key={movie.id} />
+                                ))
+                            }
+                        </div>
+                    )
+            }
+
         </div>
     );
 };

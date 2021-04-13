@@ -15,45 +15,11 @@
 
 import axios from 'axios';
 
-const requestHeader = "api_key=dba18a1312b83aca86f1dc2139f0a473&language=en-US";
 const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
+const fetchFilter = "api_key=dba18a1312b83aca86f1dc2139f0a473&language=en-US";
 
-export const fetchPopular = async () => {
-    try {
-        const { data: { results } } = await API.get(`/movie/popular?${requestHeader}`);
 
-        return results;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const fetchTopRated = async () => {
-    try {
-        const { data: { results } } = await API.get(`/movie/top_rated?${requestHeader}`);
-
-        return results;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const fetchUpcoming = async () => {
-    try {
-        const { data: { results } } = await API.get(`/movie/upcoming?${requestHeader}`);
-
-        return results;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const fetchLatest = async () => {
-    try {
-        const { data: { results } } = await API.get(`/movie/now_playing?${requestHeader}`);
-
-        return results;
-    } catch (error) {
-        console.error(error);
-    }
-};
+export const fetchPopular = () => API.get(`/movie/popular?${fetchFilter}`);
+export const fetchTopRated = () => API.get(`/movie/top_rated?${fetchFilter}`);
+export const fetchUpcoming = () => API.get(`/movie/upcoming?${fetchFilter}`);
+export const fetchLatest = () => API.get(`/movie/now_playing?${fetchFilter}`);
