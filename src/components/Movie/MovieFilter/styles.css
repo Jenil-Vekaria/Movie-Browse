@@ -1,20 +1,86 @@
 .movie-filter-container {
 	background-color: var(--filter-background);
-	position: fixed;
 	width: 260px;
-	height: 100%;
+	position: absolute;
 	margin-top: 56px;
 }
 
 .title {
 	font-weight: 600;
 	letter-spacing: 1.2px;
-	margin: 25px;
+	margin: 15px;
 }
 
-.generes-title {
-	font-weight: 300;
+.section-title {
+	font-weight: 400;
 	letter-spacing: 1.2px;
 	font-size: 13px;
-	margin-left: 25px;
+	margin: 35px 0px 10px 15px;
+}
+
+.generes-list {
+	list-style: none;
+	padding: 0;
+	font-weight: 200;
+}
+
+.item {
+	padding: 5px 0px 5px 15px;
+	width: 100%;
+	transition: 0.5 ease;
+	cursor: pointer;
+}
+
+.item:hover {
+	background-color: var(--item-select);
+}
+
+.selected {
+	background-color: var(--item-select);
+}
+
+.check {
+	float: right;
+	margin-right: 10px;
+}
+
+.rating-subsection {
+	margin: 0 15px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 14px;
+	font-weight: 200;
+}
+
+.form-range {
+	padding: 0 15px;
+}
+
+.form-range::-webkit-slider-thumb {
+	background-color: var(--purple);
+}
+
+.form-range::-webkit-slider-runnable-track {
+	background-color: var(--nav-item-select);
+	height: 5px;
+}
+
+.filter-apply-container {
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+}
+
+.btn {
+	margin-top: 10px;
+	color: white;
+}
+
+.btn-save {
+	background-color: var(--purple);
+}
+
+.btn:hover {
+	color: white;
+	outline: none;
 }

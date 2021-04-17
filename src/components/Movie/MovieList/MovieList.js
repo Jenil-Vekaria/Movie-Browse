@@ -8,7 +8,7 @@ import { getPopular, getLatest, getTopRated, getUpcoming } from '../../../redux/
 
 import styles from './styles.css';
 
-export const MovieList = () => {
+export const MovieList = ({ selectedGenre }) => {
     const [categoryIndex, setCategoryIndex] = useState(0);
     const dispatch = useDispatch();
 
@@ -43,15 +43,15 @@ export const MovieList = () => {
 
     return (
         <div className="movies-container">
-            <MovieCategory categoryIndex={categoryIndex} handleCategoryChange={handleCategoryChange} />
+            <MovieCategory selectedGenre={selectedGenre} categoryIndex={categoryIndex} handleCategoryChange={handleCategoryChange} />
 
             <br />
             {
                 movies.length === 0
                     ?
                     (
-                        <div class="spinner-border text-light" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                        <div className="spinner-border text-light" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
                     )
                     :
@@ -65,7 +65,6 @@ export const MovieList = () => {
                         </div>
                     )
             }
-
         </div>
     );
 };

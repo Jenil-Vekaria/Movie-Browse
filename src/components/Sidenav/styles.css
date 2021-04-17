@@ -3,6 +3,7 @@
 	height: 100vh;
 	background-color: var(--nav-bar);
 	position: fixed;
+	z-index: 2;
 }
 
 .navbar-list {

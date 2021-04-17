@@ -10,12 +10,9 @@
 	margin-right: 10px;
 	margin-top: 10px;
 	cursor: pointer;
-}
-
-.primary {
 	background-color: var(--nav-item-select);
 }
 
-.selected {
+.badge-selected {
 	background-color: var(--purple);
 }
