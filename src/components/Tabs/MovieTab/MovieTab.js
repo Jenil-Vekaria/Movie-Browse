@@ -11,7 +11,7 @@ export const MovieTab = () => {
         <div className="movietab-container">
             <Search />
             <div className="movie-container">
-                <MovieFilter />
+                <MovieFilter selectedGenre={selectedGenre} setselectedGenre={setselectedGenre} />
                 <MovieList selectedGenre={selectedGenre} />
             </div>
         </div>

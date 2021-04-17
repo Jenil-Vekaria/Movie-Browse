@@ -10,3 +10,7 @@ body {
 	color: white;
 	background-color: var(--background);
 }
+
+.app {
+	overflow-y: hidden;
+}

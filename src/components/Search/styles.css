@@ -4,9 +4,11 @@
 	outline: none;
 	width: 100%;
 	padding: 13px 25px;
+	margin-top: -1px;
 	color: white;
 	font-size: 20px;
 	font-family: "Open Sans", sans-serif;
 	position: fixed;
+	overflow: hidden;
 	z-index: 2;
 }

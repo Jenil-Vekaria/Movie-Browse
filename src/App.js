@@ -10,17 +10,20 @@ import styles from './App.css';
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
 
-      <Sidenav />
+        <Sidenav />
 
-      <Switch>
-        <Route path="/search" extact component={MovieTab} />
-        <Route path="/favourite" extact component={FavouriteTab} />
-        <Route path="/user" extact component={UserTab} />
-        <Route path="/" extact component={MovieTab} />
-      </Switch>
+        <Switch>
+          <Route path="/search" extact component={MovieTab} />
+          <Route path="/favourite" extact component={FavouriteTab} />
+          <Route path="/user" extact component={UserTab} />
+          <Route path="/" extact component={MovieTab} />
+        </Switch>
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
+
   );
 };

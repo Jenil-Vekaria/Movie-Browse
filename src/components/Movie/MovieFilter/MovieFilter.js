@@ -45,8 +45,8 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre }) => {
             </div>
 
             <div className="filter-apply-container">
-                <button type="button" class="btn btn-save">Save</button>
-                <button type="button" class="btn btn-danger">Reset</button>
+                <button type="button" className="btn btn-save">Save</button>
+                <button type="button" className="btn btn-danger">Reset</button>
             </div>
 
         </div>
