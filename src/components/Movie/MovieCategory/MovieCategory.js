@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiFilter } from "react-icons/fi";
 import { genres } from '../../../data/Genres';
 
 export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChange, setShowFilter, totalResult }) => {
     const categories = ["Popular", "Top Rated", "Upcoming", "Latest"];
+
     let iconStyles = { color: "#F3F3F4", fontSize: "1.5em" };
 
     const handleShowFilter = () => {
@@ -27,7 +29,6 @@ export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChan
                     typeof selectedGenre.id !== "undefined"
                         ? (
                             <span className='badge rounded-pill'>{selectedGenre.name}</span>
-
                         )
                         :
                         categories.map((category, index) => (

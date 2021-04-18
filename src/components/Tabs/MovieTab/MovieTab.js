@@ -5,7 +5,7 @@ import { MovieList } from '../../Movie/MovieList/MovieList';
 import { MovieFilter } from '../../Movie/MovieFilter/MovieFilter';
 import { WindowSize } from '../../../util/WindowSize';
 
-export const MovieTab = () => {
+export const MovieTab = ({ match }) => {
     const { windowWidth, windowHeight } = WindowSize();
     const [selectedGenre, setselectedGenre] = useState({});
     const [showFilter, setShowFilter] = useState(true);
