@@ -19,12 +19,7 @@ export const MovieTab = ({ match }) => {
         <div className="movietab-container">
             <Search />
             <div className="movie-container">
-                {
-                    showFilter ?
-                        (
-                            <MovieFilter selectedGenre={selectedGenre} setShowFilter={setShowFilter} setselectedGenre={setselectedGenre} />
-                        ) : null
-                }
+                <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} setselectedGenre={setselectedGenre} />
                 <MovieList selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} />
             </div>
         </div>

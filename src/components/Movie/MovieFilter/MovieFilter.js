@@ -3,7 +3,7 @@ import { FiCheck } from "react-icons/fi";
 import styles from './styles.css';
 import { genres } from '../../../data/Genres';
 
-export const MovieFilter = ({ selectedGenre, setselectedGenre, setShowFilter }) => {
+export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setShowFilter }) => {
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
 
@@ -18,7 +18,7 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, setShowFilter }) 
     };
 
     return (
-        <div className="movie-filter-container">
+        <div className={`movie-filter-container ${!showFilter ? 'hide' : null}`}>
             <h2 className="title">Movies</h2>
 
             <div>
