@@ -24,6 +24,7 @@
 	text-align: center;
 	padding: 15px 0px;
 	transition: 0.3s ease;
+	height: 100%;
 }
 
 a {
@@ -39,7 +40,7 @@ a:last-child {
 }
 
 /* Small Screen */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
 	.navbar-container {
 		bottom: 0px;
 		width: 100vw;

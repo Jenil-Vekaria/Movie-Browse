@@ -84,3 +84,9 @@
 	color: white;
 	outline: none;
 }
+
+@media only screen and (max-width: 750px) {
+	.movie-filter-container {
+		padding-bottom: 50px;
+	}
+}

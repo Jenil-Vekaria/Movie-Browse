@@ -10,16 +10,23 @@
     LATEST: /movie/latest
 
     SEARCH MOVIE: /search/movie/?api_key=<KEY>&language=en-US&query=<QUERY>&page=1&include_adult=false
+    SEARCH BY GENRE: /discover/movie?api_key=<KEY>&language=en-US&sort_by=popularity.desc&include_adult=false&page=1&with_genres=28&with_watch_monetization_types=flatrate
 
 */
 
 import axios from 'axios';
 
 const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
-const fetchFilter = "api_key=dba18a1312b83aca86f1dc2139f0a473&language=en-US";
+const paramAPIKey = "api_key=dba18a1312b83aca86f1dc2139f0a473";
+const paramLanguage = "language=en-US";
+const paramIncludeAdult = "include_adult=false";
+const paramReleaseYear = "primary_release_date.gte=2000";
+const paramSortby = "sort_by=popularity.des";
 
+const requestParams = `${paramAPIKey}&${paramLanguage}`;
 
-export const fetchPopular = () => API.get(`/movie/popular?${fetchFilter}`);
-export const fetchTopRated = () => API.get(`/movie/top_rated?${fetchFilter}`);
-export const fetchUpcoming = () => API.get(`/movie/upcoming?${fetchFilter}`);
-export const fetchLatest = () => API.get(`/movie/now_playing?${fetchFilter}`);
+export const fetchPopular = () => API.get(`/movie/popular?${requestParams}`);
+export const fetchTopRated = () => API.get(`/movie/top_rated?${requestParams}`);
+export const fetchUpcoming = () => API.get(`/movie/upcoming?${requestParams}`);
+export const fetchLatest = () => API.get(`/movie/now_playing?${requestParams}`);
+export const fetchByGenre = (id) => API.get(`/discover/movie?${requestParams}&${paramSortby}&${paramIncludeAdult}&${paramReleaseYear}&with_genres=${id}`);

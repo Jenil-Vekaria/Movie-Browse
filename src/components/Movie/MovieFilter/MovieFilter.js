@@ -3,20 +3,16 @@ import { FiCheck } from "react-icons/fi";
 import styles from './styles.css';
 import { genres } from '../../../data/Genres';
 
-export const MovieFilter = ({ selectedGenre, setselectedGenre }) => {
+export const MovieFilter = ({ selectedGenre, setselectedGenre, setShowFilter }) => {
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
 
     const handleSelectGenre = (e) => {
-        const genreId = e.target.value;
-        if (selectedGenre.includes(genreId)) {
-            setselectedGenre(
-                selectedGenre.filter(genre => genre !== genreId)
-            );
-        }
-        else {
-            setselectedGenre([...selectedGenre, genreId]);
-        }
+        const name = e.target.innerHTML;
+        const id = e.target.value;
+
+        if (selectedGenre.id !== id)
+            setselectedGenre({ id, name });
     };
 
     return (
@@ -29,11 +25,11 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre }) => {
                 <ul className="generes-list">
                     {
                         genres.map(genre => (
-                            <li className={`item ${selectedGenre.includes(genre.id) ? 'selected' : null}`} key={genre.id} value={genre.id} onClick={handleSelectGenre}>
+                            <li className={`item ${selectedGenre.id === genre.id ? 'selected' : null}`} key={genre.id} value={genre.id} onClick={handleSelectGenre}>
                                 {genre.name}
 
                                 {
-                                    selectedGenre.includes(genre.id)
+                                    selectedGenre.id === genre.id
                                         ? <span className="check"><FiCheck styles={iconStyles} /></span>
                                         : null
                                 }
@@ -45,8 +41,7 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre }) => {
             </div>
 
             <div className="filter-apply-container">
-                <button type="button" className="btn btn-save">Save</button>
-                <button type="button" className="btn btn-danger">Reset</button>
+                <button type="button" className="btn btn-danger" onClick={() => setselectedGenre({})}>Reset</button>
             </div>
 
         </div>
