@@ -1,8 +1,8 @@
 .movies-container {
 	padding: 20px 30px;
-	margin-left: 260px;
 	margin-top: 68px;
 	height: 100%;
+	width: 100%;
 }
 
 .badge {
@@ -37,15 +37,10 @@
 	background: none;
 	outline: none;
 	border: none;
-	display: none;
 }
 
 @media only screen and (max-width: 750px) {
 	.movies-container {
 		margin-left: 0px;
-	}
-
-	.btn-filter {
-		display: block;
 	}
 }

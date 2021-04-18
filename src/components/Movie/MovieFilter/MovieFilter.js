@@ -11,8 +11,10 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, setShowFilter }) 
         const name = e.target.innerHTML;
         const id = e.target.value;
 
-        if (selectedGenre.id !== id)
+        if (selectedGenre.id !== id) {
             setselectedGenre({ id, name });
+        }
+
     };
 
     return (
@@ -41,6 +43,7 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, setShowFilter }) 
             </div>
 
             <div className="filter-apply-container">
+                <button type="button" className="btn btn-primary save" onClick={() => setShowFilter(false)}>Save</button>
                 <button type="button" className="btn btn-danger" onClick={() => setselectedGenre({})}>Reset</button>
             </div>
 

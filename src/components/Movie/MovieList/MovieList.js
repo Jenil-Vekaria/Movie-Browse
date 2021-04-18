@@ -14,30 +14,29 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        switch (categoryIndex) {
-            case 0:
-                dispatch(getPopular());
-                break;
-            case 1:
-                dispatch(getTopRated());
-                break;
-            case 2:
-                dispatch(getUpcoming());
-                break;
-            case 3:
-                dispatch(getLatest());
-                break;
-            default:
-                dispatch(getPopular());
-                break;
-        }
-    }, [categoryIndex, dispatch]);
-
-    useEffect(() => {
         if (typeof selectedGenre.id !== "undefined") {
             dispatch(getByGenre(selectedGenre.id));
         }
-    }, [selectedGenre]);
+        else {
+            switch (categoryIndex) {
+                case 0:
+                    dispatch(getPopular());
+                    break;
+                case 1:
+                    dispatch(getTopRated());
+                    break;
+                case 2:
+                    dispatch(getUpcoming());
+                    break;
+                case 3:
+                    dispatch(getLatest());
+                    break;
+                default:
+                    dispatch(getPopular());
+                    break;
+            }
+        }
+    }, [categoryIndex, dispatch, selectedGenre]);
 
     const handleCategoryChange = (index) => {
         if (index !== categoryIndex) {

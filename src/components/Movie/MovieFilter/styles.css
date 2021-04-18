@@ -1,7 +1,7 @@
 .movie-filter-container {
 	background-color: var(--filter-background);
-	width: 260px;
-	position: absolute;
+	width: 300px;
+	height: 100%;
 	margin-top: 56px;
 }
 
@@ -80,13 +80,16 @@
 	background-color: var(--purple);
 }
 
-.btn:hover {
-	color: white;
-	outline: none;
+.save {
+	display: none;
 }
 
 @media only screen and (max-width: 750px) {
 	.movie-filter-container {
 		padding-bottom: 50px;
+	}
+
+	.save {
+		display: block;
 	}
 }
