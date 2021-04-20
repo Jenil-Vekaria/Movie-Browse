@@ -1,11 +1,13 @@
 import React from 'react';
 import { FiCheck } from "react-icons/fi";
-import './styles.css';
 import { genres } from '../../../data/Genres';
+import { WindowSize } from '../../../util/WindowSize';
+
+import './styles.css';
 
 export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setShowFilter }) => {
-
-    let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
+    const windowWidth = WindowSize();
+    const iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
 
     const handleSelectGenre = (e) => {
         const name = e.target.innerHTML;
@@ -14,7 +16,16 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setSh
         if (selectedGenre.id !== id) {
             setselectedGenre({ id, name });
         }
+        else {
+            setselectedGenre({});
+        }
 
+        //Mobile device - as soon as genere is selected => hide filer
+        if (windowWidth < 750) {
+            setShowFilter(false);
+        }
+
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -41,12 +52,6 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setSh
                     }
                 </ul>
             </div>
-
-            <div className="filter-apply-container">
-                <button type="button" className="btn btn-primary save" onClick={() => setShowFilter(false)}>Save</button>
-                <button type="button" className="btn btn-danger" onClick={() => setselectedGenre({})}>Reset</button>
-            </div>
-
         </div>
     );
 };
