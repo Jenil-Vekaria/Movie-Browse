@@ -4,6 +4,7 @@
 	height: 100%;
 	margin-top: 55px;
 	transition: 0.2s ease-out;
+	z-index: 1;
 }
 
 .hide {

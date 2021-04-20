@@ -4,7 +4,9 @@ export const WindowSize = () => {
 
     const hasWindow = typeof window != "undefined";
 
-    const [windowSize, setWindowSize] = useState(0);
+    const [windowSize, setWindowSize] = useState(hasWindow ? window.innerWidth : 0);
+
+
 
     useEffect(() => {
         const getWindowSize = () => {

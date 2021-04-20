@@ -1,8 +1,3 @@
-.movie-search-form {
-	display: flex;
-	z-index: 2;
-}
-
 .movie-search-bar {
 	background-color: var(--search-bar);
 	border: none;
@@ -15,4 +10,5 @@
 	font-family: "Open Sans", sans-serif;
 	position: fixed;
 	overflow: hidden;
+	z-index: 2;
 }

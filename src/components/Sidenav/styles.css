@@ -27,6 +27,10 @@
 	height: 100%;
 }
 
+.logo {
+	padding-bottom: 15px;
+}
+
 a {
 	width: 100%;
 }

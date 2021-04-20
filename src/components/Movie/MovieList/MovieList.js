@@ -52,8 +52,7 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
 
     // This is to stop scroll for mvoie when filter box is open
     const style = {
-        position: "fixed",
-        zIndex: -1
+        position: "fixed"
     };
 
     //Responsive design: Breakpoint for moveicard
@@ -71,7 +70,7 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
     const movieCardClass = getBreakpointClass();
 
     return (
-        <div className="movies-container" style={windowWidth <= 750 && showFilter ? style : null}>
+        <div className="movies-container" style={windowWidth < 750 && showFilter ? style : null}>
             <MovieCategory
                 selectedGenre={selectedGenre}
                 categoryIndex={categoryIndex}
