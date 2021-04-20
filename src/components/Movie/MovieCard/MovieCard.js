@@ -1,6 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
-import { FiHeart } from "react-icons/fi";
+import './styles.css';
 import posterPlaceholder from '../../../images/posterPlaceholder.png';
 
 export const MovieCard = ({ movie: { title, poster_path, release_date } }) => {

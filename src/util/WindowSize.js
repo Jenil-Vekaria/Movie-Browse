@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const WindowSize = () => {
 
     const hasWindow = typeof window != "undefined";
 
-    const getWindowSize = () => {
-        const windowHeight = hasWindow ? window.innerHeight : 0;
-        const windowWidth = hasWindow ? window.innerWidth : 0;
-
-        return { windowWidth, windowHeight };
-    };
-
-    const [windowSize, setWindowSize] = useState(getWindowSize());
+    const [windowSize, setWindowSize] = useState(0);
 
     useEffect(() => {
+        const getWindowSize = () => {
+            const windowWidth = hasWindow ? window.innerWidth : 0;
+
+            return windowWidth;
+        };
+
         if (hasWindow) {
             window.addEventListener('resize', () => {
                 setWindowSize(getWindowSize());

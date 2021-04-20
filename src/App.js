@@ -5,10 +5,14 @@ import { FavouriteTab } from './components/Tabs/FavouriteTab/FavouriteTab';
 import { UserTab } from './components/Tabs/UserTab/UserTab';
 import { Sidenav } from './components/Sidenav/Sidenav';
 
-import styles from './App.css';
+import './App.css';
 
 
 export const App = () => {
+
+  console.log('Built by Jenil');
+  console.log('https://github.com/Jenil-Vekaria');
+
   return (
     <div className="app">
       <BrowserRouter>

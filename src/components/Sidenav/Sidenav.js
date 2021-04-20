@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FiSearch, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
 import { Link } from 'react-router-dom';
-import styles from './styles.css';
+import './styles.css';
 
 export const Sidenav = () => {
-
     const [tabNumber, settabNumber] = useState(0);
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };

@@ -3,18 +3,21 @@ import { useSelector } from 'react-redux';
 import { MovieCard } from '../MovieCard/MovieCard';
 import { MovieCategory } from '../MovieCategory/MovieCategory';
 import { useDispatch } from 'react-redux';
-import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre } from '../../../redux/actions/movie';
+import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie } from '../../../redux/actions/movie';
 import { WindowSize } from '../../../util/WindowSize';
 
-import styles from './styles.css';
+import './styles.css';
 
-export const MovieList = ({ selectedGenre, showFilter, setShowFilter }) => {
+export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovieSearch }) => {
     const [categoryIndex, setCategoryIndex] = useState(0);
-    const { windowWidth, windowHeight } = WindowSize();
+    const windowWidth = WindowSize();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (typeof selectedGenre.id !== "undefined") {
+        if (queryMovieSearch) {
+            dispatch(getMovie(queryMovieSearch));
+        }
+        else if (typeof selectedGenre.id !== "undefined") {
             dispatch(getByGenre(selectedGenre.id));
         }
         else {
@@ -36,21 +39,12 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter }) => {
                     break;
             }
         }
-    }, [categoryIndex, dispatch, selectedGenre]);
+    }, [categoryIndex, dispatch, selectedGenre, queryMovieSearch]);
 
     const handleCategoryChange = (index) => {
         if (index !== categoryIndex) {
             setCategoryIndex(index);
         }
-    };
-
-    const getWindowSize = () => {
-        const width = window ? window.innerWidth : null;
-        const height = window ? window.innerHeight : null;
-        return {
-            width,
-            height,
-        };
     };
 
     const movies = useSelector((state) => state.movie[0]) || [];
@@ -83,7 +77,8 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter }) => {
                 categoryIndex={categoryIndex}
                 handleCategoryChange={handleCategoryChange}
                 setShowFilter={setShowFilter}
-                totalResult={total_result} />
+                totalResult={total_result}
+                queryMovieSearch={queryMovieSearch} />
 
             <br />
             {

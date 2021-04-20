@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiCheck } from "react-icons/fi";
-import styles from './styles.css';
+import './styles.css';
 import { genres } from '../../../data/Genres';
 
 export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setShowFilter }) => {

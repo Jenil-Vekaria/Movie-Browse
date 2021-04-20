@@ -23,14 +23,17 @@
 	align-items: center;
 }
 
-.category-title {
+.header-title {
 	width: 100%;
 }
 
 .total-movies {
-	color: var(--yellow);
 	letter-spacing: 2px;
 	width: 100%;
+}
+
+.highlight-yellow {
+	color: var(--yellow);
 }
 
 .btn-filter {
