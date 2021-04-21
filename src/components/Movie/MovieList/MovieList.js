@@ -5,6 +5,7 @@ import { MovieCategory } from '../MovieCategory/MovieCategory';
 import { useDispatch } from 'react-redux';
 import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie } from '../../../redux/actions/movie';
 import { WindowSize } from '../../../util/WindowSize';
+import { genres } from '../../../data/Genres';
 
 import './styles.css';
 import { Pagination } from '../../Pagination/Pagination';
@@ -14,12 +15,14 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
     const windowWidth = WindowSize();
     const dispatch = useDispatch();
 
+    console.log('MovieList');
+
     useEffect(() => {
         if (queryMovieSearch) {
             dispatch(getMovie(queryMovieSearch, pageNumber));
         }
-        else if (typeof selectedGenre.id !== "undefined") {
-            dispatch(getByGenre(selectedGenre.id, pageNumber));
+        else if (selectedGenre) {
+            dispatch(getByGenre(genres[selectedGenre], pageNumber));
         }
         else {
             switch (categoryIndex) {

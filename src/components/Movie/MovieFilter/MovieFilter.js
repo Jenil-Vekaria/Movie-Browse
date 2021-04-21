@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiCheck } from "react-icons/fi";
+import { useHistory } from 'react-router';
 import { genres } from '../../../data/Genres';
 import { WindowSize } from '../../../util/WindowSize';
 
 import './styles.css';
 
-export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setShowFilter }) => {
+export const MovieFilter = ({ selectedGenre, showFilter, setShowFilter }) => {
     const windowWidth = WindowSize();
     const iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
+
+    const history = useHistory();
+
+    console.log('MovieFilter');
+
 
     const handleSelectGenre = (e) => {
         const name = e.target.innerHTML;
         const id = e.target.value;
 
-        if (selectedGenre.id !== id) {
-            setselectedGenre({ id, name });
+        if (genres[selectedGenre] !== id) {
+            history.push(`/search/${name.toLowerCase().replace(' ', '_')}`);
         }
         else {
-            setselectedGenre({});
+            history.push(`/search`);
         }
 
         //Mobile device - as soon as genere is selected => hide filer
@@ -37,12 +43,12 @@ export const MovieFilter = ({ selectedGenre, setselectedGenre, showFilter, setSh
                 <hr />
                 <ul className="generes-list">
                     {
-                        genres.map(genre => (
-                            <li className={`item ${selectedGenre.id === genre.id ? 'selected' : null}`} key={genre.id} value={genre.id} onClick={handleSelectGenre}>
-                                {genre.name}
+                        Object.keys(genres).map(genre => (
+                            <li className={`item ${genres[selectedGenre] === genres[genre] ? 'selected' : null}`} key={genres[genre]} value={genres[genre]} onClick={handleSelectGenre}>
+                                {genre}
 
                                 {
-                                    selectedGenre.id === genre.id
+                                    genres[selectedGenre] === genres[genre]
                                         ? <span className="check"><FiCheck styles={iconStyles} /></span>
                                         : null
                                 }

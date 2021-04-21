@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiFilter } from "react-icons/fi";
 
 export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChange, setShowFilter, totalResult, queryMovieSearch }) => {
     const categories = ["Popular", "Top Rated", "Upcoming", "Latest"];
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.5em" };
+
+    console.log('MovieCategory');
+
 
     const handleShowFilter = () => {
         setShowFilter(prevShowFilter => !prevShowFilter);
@@ -14,7 +17,7 @@ export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChan
         if (queryMovieSearch) {
             return (<h2 className="header-title">Search for <span className="highlight-yellow">{queryMovieSearch}</span></h2>);
         }
-        else if (typeof selectedGenre.id !== "undefined") {
+        else if (selectedGenre) {
             return (<p className="total-movies ">Result: <span className="highlight-yellow">{totalResult} MOVIES</span></p>);
         }
         else {
@@ -36,9 +39,9 @@ export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChan
                 !queryMovieSearch && (
                     <div className="category-group">
                         {
-                            typeof selectedGenre.id !== "undefined"
+                            selectedGenre
                                 ? (
-                                    <span className='badge rounded-pill'>{selectedGenre.name}</span>
+                                    <span className='badge rounded-pill'>{selectedGenre}</span>
                                 )
                                 :
                                 categories.map((category, index) => (
