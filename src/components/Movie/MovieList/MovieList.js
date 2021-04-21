@@ -7,39 +7,40 @@ import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie }
 import { WindowSize } from '../../../util/WindowSize';
 
 import './styles.css';
+import { Pagination } from '../../Pagination/Pagination';
 
-export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovieSearch }) => {
+export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovieSearch, pageNumber }) => {
     const [categoryIndex, setCategoryIndex] = useState(0);
     const windowWidth = WindowSize();
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (queryMovieSearch) {
-            dispatch(getMovie(queryMovieSearch));
+            dispatch(getMovie(queryMovieSearch, pageNumber));
         }
         else if (typeof selectedGenre.id !== "undefined") {
-            dispatch(getByGenre(selectedGenre.id));
+            dispatch(getByGenre(selectedGenre.id, pageNumber));
         }
         else {
             switch (categoryIndex) {
                 case 0:
-                    dispatch(getPopular());
+                    dispatch(getPopular(pageNumber));
                     break;
                 case 1:
-                    dispatch(getTopRated());
+                    dispatch(getTopRated(pageNumber));
                     break;
                 case 2:
-                    dispatch(getUpcoming());
+                    dispatch(getUpcoming(pageNumber));
                     break;
                 case 3:
-                    dispatch(getLatest());
+                    dispatch(getLatest(pageNumber));
                     break;
                 default:
-                    dispatch(getPopular());
+                    dispatch(getPopular(pageNumber));
                     break;
             }
         }
-    }, [categoryIndex, dispatch, selectedGenre, queryMovieSearch]);
+    }, [categoryIndex, dispatch, selectedGenre, queryMovieSearch, pageNumber]);
 
     const handleCategoryChange = (index) => {
         if (index !== categoryIndex) {
@@ -49,7 +50,7 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
 
     const movies = useSelector((state) => state.movie[0]) || [];
     const total_result = useSelector((state) => state.movie[1]) || 0;
-
+    const total_page = useSelector((state) => state.movie[2]) || 0;
     // This is to stop scroll for mvoie when filter box is open
     const style = {
         position: "fixed"
@@ -99,6 +100,8 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
                         </div>
                     )
             }
+
+            <Pagination totalPage={total_page} pageNumber={pageNumber} />
         </div>
     );
 };

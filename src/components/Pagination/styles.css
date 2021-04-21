@@ -1,0 +1,31 @@
+.pagination {
+	border-radius: 15px;
+}
+
+.page-link {
+	background-color: var(--filter-background);
+	border: none;
+	color: white;
+	cursor: pointer;
+}
+
+.page-item {
+	border: 1px solid var(--search-bar);
+	border-top: 3px solid var(--search-bar);
+	border-bottom: 3px solid var(--search-bar);
+}
+
+.btn-previous {
+	border-radius: 5px 0px 0px 5px;
+	border-left: 3px solid var(--search-bar);
+	border-top: 3px solid var(--search-bar);
+	border-bottom: 3px solid var(--search-bar);
+}
+
+.btn-next {
+	border-radius: 0px 5px 5px 0px;
+	border-left: 1px solid var(--search-bar);
+	border-top: 3px solid var(--search-bar);
+	border-bottom: 3px solid var(--search-bar);
+	border-right: 3px solid var(--search-bar);
+}

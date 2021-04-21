@@ -24,9 +24,9 @@ const paramSortby = "sort_by=vote_count.desc";
 
 const requestParams = `${paramAPIKey}&${paramLanguage}`;
 
-export const fetchPopular = () => API.get(`/movie/popular?${requestParams}`);
-export const fetchTopRated = () => API.get(`/movie/top_rated?${requestParams}`);
-export const fetchUpcoming = () => API.get(`/movie/upcoming?${requestParams}`);
-export const fetchLatest = () => API.get(`/movie/now_playing?${requestParams}`);
-export const fetchByGenre = (id) => API.get(`/discover/movie?${requestParams}&${paramSortby}&${paramReleaseYear}&with_genres=${id}`);
-export const fetchMovie = (name) => API.get(`/search/movie?${requestParams}&query=${name}`);
+export const fetchPopular = (page) => API.get(`/movie/popular?${requestParams}&page=${page}`);
+export const fetchTopRated = (page) => API.get(`/movie/top_rated?${requestParams}&page=${page}`);
+export const fetchUpcoming = (page) => API.get(`/movie/upcoming?${requestParams}&page=${page}`);
+export const fetchLatest = (page) => API.get(`/movie/now_playing?${requestParams}&page=${page}`);
+export const fetchByGenre = (id, page) => API.get(`/discover/movie?${requestParams}&${paramSortby}&${paramReleaseYear}&with_genres=${id}&page=${page}`);
+export const fetchMovie = (name, page) => API.get(`/search/movie?${requestParams}&query=${name}&page=${page}`);
