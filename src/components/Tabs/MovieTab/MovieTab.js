@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Search } from '../../Search/Search.js';
 import { MovieList } from '../../Movie/MovieList/MovieList';
 import { MovieFilter } from '../../Movie/MovieFilter/MovieFilter';
@@ -12,6 +12,8 @@ export const MovieTab = ({ match, location: { search } }) => {
     const [showFilter, setShowFilter] = useState(true);
     const [queryMovieSearch, setqueryMovieSearch] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
+
+    const history = useHistory();
 
     const { genere } = useParams();
 
@@ -57,8 +59,8 @@ export const MovieTab = ({ match, location: { search } }) => {
         <div className="movietab-container">
             <Search queryMovieSearch={queryMovieSearch} />
             <div className="movie-container">
-                <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} />
-                <MovieList selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} />
+                <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} history={history} />
+                <MovieList selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} history={history} />
             </div>
         </div>
     );

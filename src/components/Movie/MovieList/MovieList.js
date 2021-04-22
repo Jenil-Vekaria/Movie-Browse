@@ -10,12 +10,11 @@ import { genres } from '../../../data/Genres';
 import './styles.css';
 import { Pagination } from '../../Pagination/Pagination';
 
-export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovieSearch, pageNumber }) => {
+export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovieSearch, pageNumber, history }) => {
     const [categoryIndex, setCategoryIndex] = useState(0);
     const windowWidth = WindowSize();
     const dispatch = useDispatch();
 
-    console.log('MovieList');
 
     useEffect(() => {
         if (queryMovieSearch) {
@@ -81,7 +80,8 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
                 handleCategoryChange={handleCategoryChange}
                 setShowFilter={setShowFilter}
                 totalResult={total_result}
-                queryMovieSearch={queryMovieSearch} />
+                queryMovieSearch={queryMovieSearch}
+                history={history} />
 
             <br />
             {
@@ -104,7 +104,7 @@ export const MovieList = ({ selectedGenre, showFilter, setShowFilter, queryMovie
                     )
             }
 
-            <Pagination totalPage={total_page} pageNumber={pageNumber} />
+            <Pagination totalPage={total_page} pageNumber={pageNumber} history={history} />
         </div>
     );
 };

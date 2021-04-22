@@ -1,19 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FiCheck } from "react-icons/fi";
-import { useHistory } from 'react-router';
 import { genres } from '../../../data/Genres';
 import { WindowSize } from '../../../util/WindowSize';
 
 import './styles.css';
 
-export const MovieFilter = ({ selectedGenre, showFilter, setShowFilter }) => {
+export const MovieFilter = ({ selectedGenre, showFilter, setShowFilter, history }) => {
     const windowWidth = WindowSize();
     const iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
-
-    const history = useHistory();
-
-    console.log('MovieFilter');
-
 
     const handleSelectGenre = (e) => {
         const name = e.target.innerHTML;

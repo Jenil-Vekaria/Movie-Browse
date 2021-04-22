@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
 import './styles.css';
 
-export const Pagination = ({ totalPage, pageNumber }) => {
+export const Pagination = ({ totalPage, pageNumber, history }) => {
 
     const [currentPage, setcurrentPage] = useState(1);
 
     //This will display 5 blocks of number at a time
     // 1 2 3 4 5 ... 499 500
     const [totalNumberToDisplay, setTotalNumberToDisplay] = useState(3);
-
-    const history = useHistory();
 
     useEffect(() => {
         setcurrentPage(parseInt(pageNumber));
