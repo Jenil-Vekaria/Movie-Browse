@@ -8,7 +8,7 @@ export const Pagination = ({ totalPage, pageNumber }) => {
 
     //This will display 5 blocks of number at a time
     // 1 2 3 4 5 ... 499 500
-    const [totalNumberToDisplay, setTotalNumberToDisplay] = useState(5);
+    const [totalNumberToDisplay, setTotalNumberToDisplay] = useState(3);
 
     const history = useHistory();
 
@@ -24,15 +24,15 @@ export const Pagination = ({ totalPage, pageNumber }) => {
         let paginationList;
         //Far Left
         if (currentPage < totalNumberToDisplay) {
-            paginationList = [...generateArray(1, totalNumberToDisplay), '...', totalPage - 1, totalPage];
+            paginationList = [...generateArray(1, totalNumberToDisplay), '...', totalPage];
         }
         //Far Right
-        else if (currentPage > totalPage - 5) {
-            paginationList = [1, 2, '...', ...generateArray(totalPage - 5, totalPage)];
+        else if (currentPage > totalPage - totalNumberToDisplay) {
+            paginationList = [1, '...', ...generateArray(totalPage - totalNumberToDisplay, totalPage)];
         }
         //Middle
         else if (currentPage >= totalNumberToDisplay) {
-            paginationList = [1, 2, '...', ...generateArray(currentPage - 2, currentPage + 2), '...', totalPage - 1, totalPage];
+            paginationList = [1, '...', ...generateArray(currentPage - 1, currentPage + 1), '...', totalPage];
         }
 
 
@@ -43,18 +43,23 @@ export const Pagination = ({ totalPage, pageNumber }) => {
         const index = e.target.value;
         const page = e.target.innerHTML;
 
+        const { pathname } = history.location;
+
+        if (currentPage === parseInt(page))
+            return;
+
         if (page !== '...') {
-            history.push(`/search?page=${page}`);
+            history.push(`${pathname}?page=${page}`);
         }
         else {
             /*
                 lower '...' clicked = move back <totalNumberToDisplay> pages from currentPage
                 higher '...' clicked = move ahead <totalNumberToDisplay> pages from currentPage
             */
-            if (index === 2) {
-                history.push(`/search?page=${currentPage - totalNumberToDisplay - 1}`);
+            if (index === 1) {
+                history.push(`${pathname}?page=${currentPage - totalNumberToDisplay}`);
             } else {
-                history.push(`/search?page=${currentPage + totalNumberToDisplay + 1}`);
+                history.push(`${pathname}?page=${currentPage + totalNumberToDisplay}`);
             }
         }
     };
@@ -62,12 +67,14 @@ export const Pagination = ({ totalPage, pageNumber }) => {
     const handlePreviousNext = (e) => {
         const action = e.target.value;
 
+        const { pathname } = history.location;
+
         // -1 = Previous
         // 1 = Next
         if (action < 0)
-            history.push(`/search?page=${currentPage - 1}`);
+            history.push(`${pathname}?page=${currentPage - 1}`);
         else
-            history.push(`/search?page=${currentPage + 1}`);
+            history.push(`${pathname}?page=${currentPage + 1}`);
     };
 
     return (

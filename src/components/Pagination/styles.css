@@ -1,5 +1,6 @@
 .pagination {
 	border-radius: 15px;
+	padding-bottom: 50px;
 }
 
 .page-link {
@@ -28,4 +29,11 @@
 	border-top: 3px solid var(--search-bar);
 	border-bottom: 3px solid var(--search-bar);
 	border-right: 3px solid var(--search-bar);
+}
+
+/* Small Screen */
+@media only screen and (max-width: 750px) {
+	.pagination {
+		padding: 25px 55px;
+	}
 }
