@@ -2,7 +2,6 @@
 	width: 100%;
 	overflow: hidden;
 }
-
 .backdrop {
 	height: 100vh;
 	background-position: center;
@@ -55,6 +54,7 @@
 
 .genres {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: baseline;
 }
 

@@ -10,7 +10,7 @@ export const Search = () => {
         e.preventDefault();
 
         if (movieSearch)
-            history.push(`/search?movieName=${movieSearch}`);
+            history.push(`/search?movieName=${movieSearch}&page=1`);
         else
             history.push(`/search`);
 

@@ -23,36 +23,45 @@ export const MovieTab = ({ location: { search } }) => {
     const dispatch = useDispatch();
 
     const { genere, movieId } = useParams();
-
+    //movieName=star%20wars&page=2
     useEffect(() => {
-        const params = search.slice(1).split("=");
 
-        const paramName = params[0];
-        const paramValue = params[1];
+        //Reset Value
+        setqueryMovieSearch('');
+        setPageNumber(1);
+        setselectedGenre('');
 
-        if (paramName === 'page') {
-            setPageNumber(paramValue);
+        const fields = search.slice(1).split("&");
+
+        let fieldValueMapping = {};
+
+        fields.forEach(field => {
+            if (field) {
+                let [fieldName, fieldValue] = field.split('=');
+
+                fieldValueMapping[fieldName] = fieldValue;
+            }
+        });
+
+        if (fieldValueMapping.page) {
+            setPageNumber(parseInt(fieldValueMapping.page));
             window.scrollTo(0, 0);
-        }
-        else {
-            setPageNumber(1);
         }
 
         if (genere) {
             setselectedGenre(upperCaseWord(genere));
             dispatch(getByGenre(genres[upperCaseWord(genere)], pageNumber));
         }
-        else if (paramName === 'movieName') {
-            setqueryMovieSearch(paramValue);
-            dispatch(getMovie(paramValue, pageNumber));
+        else if (fieldValueMapping.movieName) {
+            let movieSearch = fieldValueMapping.movieName.replaceAll('%20', '_');
+
+            setqueryMovieSearch(upperCaseWord(movieSearch));
+            dispatch(getMovie(fieldValueMapping.movieName, pageNumber));
         }
         else if (movieId) {
             dispatch(getMovieInfo(movieId));
         }
         else {
-            setselectedGenre('');
-            setqueryMovieSearch('');
-
             // else {
             switch (categoryIndex) {
                 case 0:

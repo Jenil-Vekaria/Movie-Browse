@@ -1,33 +1,38 @@
 import React from 'react';
 import { FiClock, FiPlay, FiHeart } from "react-icons/fi";
 import { FaImdb } from "react-icons/fa";
-import './styles.css';
+import posterPlaceholder from '../../../images/posterPlaceholder.png';
 import { useSelector } from 'react-redux';
+
+import './styles.css';
 
 export const MovieInfo = () => {
     const icontStyle = { color: "white", fontSize: "2rem" };
     const movie = useSelector((state) => state.movie[0]) || {};
 
-    const backDrop = {
-        background: movie.backdrop_path ?
-            ` linear-gradient(
-                        to top,rgb(24, 33, 48),
-                        rgba(24, 33, 48, 0.7) 83%,
-                        rgba(24, 33, 48, 0.5)), 
-                        url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}')` : ''
+
+    const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
+    const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
+    const backdropStyle = {
+        background: ` linear-gradient(
+                            to top,rgb(24, 33, 48),
+                            rgba(24, 33, 48, 0.7) 83%,
+                            rgba(24, 33, 48, 0.5)), 
+                            url(${backdropURL})`
     };
 
+    console.log(movie);
     return (
         movie.original_title ?
             (
 
                 <div className="view-movie-container">
-                    <div className="backdrop" style={backDrop}>
+                    <div className="backdrop" style={backdropStyle}>
                         <FiPlay style={icontStyle} />
                         <h3>Watch Trailer</h3>
                     </div>
                     <div className="movie-info-display row row-cols-1 row-cols-lg-2">
-                        <img className="poster col-xl-3 col-lg-4 col-md-4 col-sm-6" src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="movie_poster" />
+                        <img className="poster col-xl-3 col-lg-4 col-md-4 col-sm-6" src={posterURL} alt="movie_poster" />
                         <div className="movie-info col-lg-6">
                             <div>
                                 <h5 className="year">{movie.release_date.split('-')[0]}</h5>
@@ -37,9 +42,9 @@ export const MovieInfo = () => {
                                 <div className="genres letter-spacing fw-lighter">
                                     {
                                         movie.genres.map((genere, index) => (
-                                            <p>
+                                            <p key={index}>
                                                 {genere.name}
-                                                {index < movie.genres.length - 1 ? (<span className="bullet" key={index}>&bull;</span>) : null}
+                                                {index < movie.genres.length - 1 ? (<span className="bullet">&bull;</span>) : null}
 
                                             </p>
 

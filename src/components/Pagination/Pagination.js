@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 
-export const Pagination = ({ totalPage, pageNumber, history }) => {
+export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history }) => {
 
     const [currentPage, setcurrentPage] = useState(1);
 
@@ -19,8 +19,13 @@ export const Pagination = ({ totalPage, pageNumber, history }) => {
 
     const getCurrentList = () => {
         let paginationList;
+
+        //Total page < Total Numbers displaying 
+        if (totalPage <= totalNumberToDisplay) {
+            paginationList = [...generateArray(1, totalPage)];
+        }
         //Far Left
-        if (currentPage < totalNumberToDisplay) {
+        else if (currentPage < totalNumberToDisplay) {
             paginationList = [...generateArray(1, totalNumberToDisplay), '...', totalPage];
         }
         //Far Right
@@ -40,13 +45,16 @@ export const Pagination = ({ totalPage, pageNumber, history }) => {
         const index = e.target.value;
         const page = e.target.innerHTML;
 
-        const { pathname } = history.location;
+        let { pathname } = history.location;
+
+        const searchQuery = queryMovieSearch ? `movieName=${queryMovieSearch}&page=${page}` : `page=${page}`;
+
 
         if (currentPage === parseInt(page))
             return;
 
         if (page !== '...') {
-            history.push(`${pathname}?page=${page}`);
+            history.push(`${pathname}?${searchQuery}`);
         }
         else {
             /*
@@ -54,9 +62,9 @@ export const Pagination = ({ totalPage, pageNumber, history }) => {
                 higher '...' clicked = move ahead <totalNumberToDisplay> pages from currentPage
             */
             if (index === 1) {
-                history.push(`${pathname}?page=${currentPage - totalNumberToDisplay}`);
+                history.push(`${pathname}?${searchQuery}`);
             } else {
-                history.push(`${pathname}?page=${currentPage + totalNumberToDisplay}`);
+                history.push(`${pathname}?${searchQuery}`);
             }
         }
     };

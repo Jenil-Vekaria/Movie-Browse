@@ -38,7 +38,7 @@ export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, show
     };
 
     const movieCardClass = getBreakpointClass();
-    console.log(movies);
+
     return (
         <div className="movies-container" style={windowWidth < 750 && showFilter ? style : null}>
             <MovieCategory
@@ -71,7 +71,10 @@ export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, show
                     )
             }
 
-            <Pagination totalPage={total_page} pageNumber={pageNumber} history={history} />
+            {
+                total_page > 1 ? <Pagination queryMovieSearch={queryMovieSearch} totalPage={total_page} pageNumber={pageNumber} history={history} /> : null
+            }
+
         </div>
     );
 };
