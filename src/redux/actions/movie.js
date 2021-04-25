@@ -61,3 +61,13 @@ export const getMovie = (name, page) => async (distpatch) => {
         console.error(error);
     }
 };
+
+export const getMovieInfo = (id) => async (distpatch) => {
+    try {
+        const { data } = await api.fetchMovieInfo(id);
+        // console.log(data);
+        distpatch({ type: "FETCH_MOVIE", payload: { data } });
+    } catch (error) {
+        console.error(error);
+    }
+};

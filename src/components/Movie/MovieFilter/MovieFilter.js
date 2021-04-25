@@ -30,7 +30,7 @@ export const MovieFilter = ({ selectedGenre, showFilter, setShowFilter, history 
 
     return (
         <div className={`movie-filter-container ${!showFilter ? 'hide' : null}`}>
-            <h2 className="title">Movies</h2>
+            <h2 className="filter-title">Movies</h2>
 
             <div>
                 <p className="section-title">GENRES</p>

@@ -1,13 +1,19 @@
 import React from 'react';
 import { FiFilter } from "react-icons/fi";
 
-export const MovieCategory = ({ selectedGenre, categoryIndex, handleCategoryChange, setShowFilter, totalResult, queryMovieSearch, history }) => {
+export const MovieCategory = ({ selectedGenre, categoryIndex, setCategoryIndex, setShowFilter, totalResult, queryMovieSearch, history }) => {
     const categories = ["Popular", "Top Rated", "Upcoming", "Latest"];
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.5em" };
 
     const handleShowFilter = () => {
         setShowFilter(prevShowFilter => !prevShowFilter);
+    };
+
+    const handleCategoryChange = (index) => {
+        if (index !== categoryIndex) {
+            setCategoryIndex(index);
+        }
     };
 
     const getTitle = () => {

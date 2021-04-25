@@ -1,0 +1,97 @@
+.view-movie-container {
+	width: 100%;
+	overflow: hidden;
+}
+
+.backdrop {
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	padding-top: 250px;
+	transition: 1s ease-in;
+}
+
+.movie-info-display {
+	/* border: 1px solid red; */
+	margin-top: -250px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 100%;
+	padding: 35px;
+}
+
+.movie-info {
+	/* border: 1px solid lawngreen; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.year {
+	font-weight: 200;
+	font-size: 18px;
+}
+
+.title {
+	color: var(--yellow);
+	font-weight: 700;
+	font-size: 50px;
+}
+
+.letter-spacing {
+	letter-spacing: 1px;
+}
+
+.overview {
+	/* border: 1px solid red; */
+	font-weight: 300;
+}
+
+.genres {
+	display: flex;
+	align-items: baseline;
+}
+
+.bullet {
+	padding: 0px 15px;
+}
+
+.flex {
+	display: flex;
+}
+
+.imdb-rating {
+	padding-left: 55px;
+}
+.imdb-rating span {
+	padding-left: 10px;
+}
+
+.runtime span {
+	padding-left: 10px;
+}
+
+.btn {
+	width: 130px;
+}
+
+/* Small Screen */
+@media only screen and (max-width: 990px) {
+	.movie-info {
+		padding-top: 30px;
+	}
+
+	.overview {
+		padding: 30px 0px 10px 0px;
+	}
+
+	.btn {
+		margin-top: 25px;
+	}
+}

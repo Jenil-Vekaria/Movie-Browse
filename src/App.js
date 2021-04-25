@@ -20,6 +20,7 @@ export const App = () => {
         <Sidenav />
 
         <Switch>
+          <Route path="/search/movie/:movieId" extact component={MovieTab} />
           <Route path="/search/:genere" extact component={MovieTab} />
           <Route path="/search" extact component={MovieTab} />
           <Route path="/favourite" extact component={FavouriteTab} />
