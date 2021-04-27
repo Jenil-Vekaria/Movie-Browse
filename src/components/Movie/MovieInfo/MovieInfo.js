@@ -1,15 +1,17 @@
 import React from 'react';
 import { FiClock, FiPlay, FiHeart } from "react-icons/fi";
 import { FaImdb } from "react-icons/fa";
-import posterPlaceholder from '../../../images/posterPlaceholder.png';
 import { useSelector } from 'react-redux';
+import posterPlaceholder from '../../../images/posterPlaceholder.png';
 
 import './styles.css';
+import MovieCredit from './MovieCredit/MovieCredit';
 
 export const MovieInfo = () => {
     const icontStyle = { color: "white", fontSize: "2rem" };
-    const movie = useSelector((state) => state.movie[0]) || {};
 
+    const movie = useSelector((state) => state.movie[0]) || {};
+    const movieCredit = useSelector((state) => state.movie[1]) || [];
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
     const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
@@ -21,7 +23,6 @@ export const MovieInfo = () => {
                             url(${backdropURL})`
     };
 
-    console.log(movie);
     return (
         movie.original_title ?
             (
@@ -72,8 +73,7 @@ export const MovieInfo = () => {
                     <br />
                     <br />
                     <br />
-                    <br />
-                    <br />
+                    <MovieCredit movieCredit={movieCredit} />
                 </div >
             )
             :

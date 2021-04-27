@@ -31,3 +31,4 @@ export const fetchLatest = (page) => API.get(`/movie/now_playing?${requestParams
 export const fetchByGenre = (id, page) => API.get(`/discover/movie?${requestParams}&${paramSortby}&${paramReleaseYear}&with_genres=${id}&page=${page}`);
 export const fetchMovie = (name, page) => API.get(`/search/movie?${requestParams}&query=${name}&page=${page}`);
 export const fetchMovieInfo = (id) => API.get(`/movie/${id}?${requestParams}`);
+export const fetchMovieCredit = (id) => API.get(`/movie/${id}/credits?${requestParams}`);

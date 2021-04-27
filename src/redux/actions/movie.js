@@ -71,3 +71,13 @@ export const getMovieInfo = (id) => async (distpatch) => {
         console.error(error);
     }
 };
+
+export const getMovieCredit = (id) => async (distpatch) => {
+    try {
+        const { data: { cast } } = await api.fetchMovieCredit(id);
+        // console.log(data);
+        distpatch({ type: "FETCH_MOVIE_CREDIT", payload: { cast } });
+    } catch (error) {
+        console.error(error);
+    }
+};

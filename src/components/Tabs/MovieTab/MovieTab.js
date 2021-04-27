@@ -7,7 +7,7 @@ import { MovieFilter } from '../../Movie/MovieFilter/MovieFilter';
 import './styles.css';
 import { MovieInfo } from '../../Movie/MovieInfo/MovieInfo.js';
 import { useDispatch } from 'react-redux';
-import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie, getMovieInfo } from '../../../redux/actions/movie';
+import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie, getMovieInfo, getMovieCredit } from '../../../redux/actions/movie';
 import { genres } from '../../../data/Genres';
 
 
@@ -60,6 +60,7 @@ export const MovieTab = ({ location: { search } }) => {
         }
         else if (movieId) {
             dispatch(getMovieInfo(movieId));
+            dispatch(getMovieCredit(movieId));
         }
         else {
             // else {

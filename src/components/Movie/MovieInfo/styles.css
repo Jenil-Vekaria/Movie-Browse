@@ -81,6 +81,15 @@
 	width: 130px;
 }
 
+.movie-cast-container {
+	padding: 35px;
+}
+
+.show-all {
+	border: 1px solid red;
+	width: 80px;
+}
+
 /* Small Screen */
 @media only screen and (max-width: 990px) {
 	.movie-info {
