@@ -32,3 +32,4 @@ export const fetchByGenre = (id, page) => API.get(`/discover/movie?${requestPara
 export const fetchMovie = (name, page) => API.get(`/search/movie?${requestParams}&query=${name}&page=${page}`);
 export const fetchMovieInfo = (id) => API.get(`/movie/${id}?${requestParams}`);
 export const fetchMovieCredit = (id) => API.get(`/movie/${id}/credits?${requestParams}`);
+export const fetchMovieImages = (id) => API.get(`/movie/${id}/images?${paramAPIKey}`);

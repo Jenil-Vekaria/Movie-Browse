@@ -29,6 +29,7 @@ export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, show
         if (typeof total_page === "number")
             setTotalPage(total_page);
 
+
     }, [movies, total_result, total_page]);
 
 

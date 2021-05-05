@@ -3,13 +3,20 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Search } from '../../Search/Search.js';
 import { MovieList } from '../../Movie/MovieList/MovieList';
 import { MovieFilter } from '../../Movie/MovieFilter/MovieFilter';
-
-import './styles.css';
 import { MovieInfo } from '../../Movie/MovieInfo/MovieInfo.js';
 import { useDispatch } from 'react-redux';
-import { getPopular, getLatest, getTopRated, getUpcoming, getByGenre, getMovie, getMovieInfo, getMovieCredit } from '../../../redux/actions/movie';
-import { genres } from '../../../data/Genres';
+import {
+    getPopular,
+    getLatest,
+    getTopRated,
+    getUpcoming,
+    getByGenre,
+    getMovie,
+    getMovieInfo
+} from '../../../redux/actions/movie';
 
+import { genres } from '../../../data/Genres';
+import './styles.css';
 
 export const MovieTab = ({ location: { search } }) => {
 
@@ -61,7 +68,8 @@ export const MovieTab = ({ location: { search } }) => {
         }
         else if (movieId) {
             dispatch(getMovieInfo(movieId));
-            dispatch(getMovieCredit(movieId));
+            // dispatch(getMovieCredit(movieId));
+            // dispatch(getMovieImages(movieId));
         }
         else {
             // else {
