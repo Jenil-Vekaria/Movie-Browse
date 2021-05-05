@@ -1,5 +1,6 @@
 .movie-card {
 	margin: 10px 0px;
+	animation: fadeIn ease 1.5s;
 }
 
 .movie-title {
@@ -21,4 +22,13 @@
 
 .movie-poster:hover {
 	transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
