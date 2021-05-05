@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import posterPlaceholder from '../../../../images/posterPlaceholder.png';
 import { WindowSize } from '../../../../util/WindowSize';
 
-const MovieCredit = ({ movieCredit }) => {
+const MovieCredit = () => {
     const [showMore, setshowMore] = useState(false);
     const [displayLimit, setDisplayLimit] = useState(12);
+    const [movieCredits, setmovieCredits] = useState([]);
     const windowWidth = WindowSize();
+
+    const movieCredit = useSelector((state) => state.movie[1]);
 
     const getBreakpointClass = () => {
         if (windowWidth <= 540)
@@ -20,18 +24,24 @@ const MovieCredit = ({ movieCredit }) => {
 
     useEffect(() => {
         if (showMore) {
-            setDisplayLimit(movieCredit.length);
+            setDisplayLimit(movieCredits.length);
         } else {
             setDisplayLimit(12);
         }
-    }, [showMore, movieCredit.length]);
+    }, [showMore, movieCredits.length]);
+
+    useEffect(() => {
+        if (movieCredit)
+            setmovieCredits(movieCredit);
+    }, [movieCredit]);
 
     const handleShowMore = () => {
         setshowMore(prevshowMore => !prevshowMore);
     };
 
-    if (movieCredit.length > 0) {
-        return (
+    return (
+
+        movieCredits.length > 0 ? (
             <div className="movie-cast-container d-flex flex-column align-items-center">
                 <div className="d-flex" style={{ width: "100%" }}>
                     <h1 className="header-title">Cast</h1>
@@ -43,7 +53,7 @@ const MovieCredit = ({ movieCredit }) => {
                 <br />
                 <div className={`row ${getBreakpointClass()}`}>
                     {
-                        movieCredit.map((cast, index) => (
+                        movieCredits.map((cast, index) => (
 
                             index < displayLimit && (
                                 <div className="col mb-3" key={cast.id}>
@@ -66,11 +76,15 @@ const MovieCredit = ({ movieCredit }) => {
                 <br />
                 <br />
             </div >
-        );
-    }
-    else {
-        return <div></div>;
-    }
+        )
+            :
+            (
+                <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            )
+
+    );
 };
 
 export default MovieCredit;

@@ -49,6 +49,7 @@ export const MovieTab = ({ location: { search } }) => {
         }
 
         if (genere) {
+            console.log('fetch');
             setselectedGenre(upperCaseWord(genere));
             dispatch(getByGenre(genres[upperCaseWord(genere)], pageNumber));
         }

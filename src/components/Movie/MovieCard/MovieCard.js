@@ -8,12 +8,12 @@ export const MovieCard = ({ movie: { id, title, poster_path, release_date }, his
         history.push(`/search/movie/${id}`);
     };
 
-    const posterPath = poster_path ? `https://image.tmdb.org/t/p/w200${poster_path}` : null;
+    const posterPath = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : posterPlaceholder;
     return (
         <div className="movie-card col-xs-12" >
             <img
                 className="movie-poster card-img-top"
-                src={posterPath || posterPlaceholder}
+                src={posterPath}
                 data-src={posterPlaceholder}
                 loading="lazy"
                 alt={title}

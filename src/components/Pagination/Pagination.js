@@ -8,7 +8,7 @@ export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history })
     //This will display 5 blocks of number at a time
     // 1 2 3 4 5 ... 499 500
     const [totalNumberToDisplay, setTotalNumberToDisplay] = useState(3);
-
+    console.log(pageNumber);
     useEffect(() => {
         setcurrentPage(parseInt(pageNumber));
     }, [pageNumber]);

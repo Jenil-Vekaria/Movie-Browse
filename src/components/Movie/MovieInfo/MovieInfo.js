@@ -11,7 +11,6 @@ export const MovieInfo = () => {
     const icontStyle = { color: "white", fontSize: "2rem" };
 
     const movie = useSelector((state) => state.movie[0]) || {};
-    const movieCredit = useSelector((state) => state.movie[1]) || [];
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
     const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
@@ -73,7 +72,8 @@ export const MovieInfo = () => {
                     <br />
                     <br />
                     <br />
-                    <MovieCredit movieCredit={movieCredit} />
+
+                    <MovieCredit />
                 </div >
             )
             :

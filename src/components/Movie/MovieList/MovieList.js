@@ -9,28 +9,35 @@ import { Pagination } from '../../Pagination/Pagination';
 
 export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, showFilter, setShowFilter, queryMovieSearch, pageNumber, history }) => {
     const [movieList, setmovieList] = useState([]);
+    const [totalResult, setTotalResult] = useState(0);
+    const [totalPage, setTotalPage] = useState(0);
 
     const windowWidth = WindowSize();
     const movies = useSelector((state) => state.movie[0]);
-    const total_result = useSelector((state) => state.movie[1]) || 0;
-    const total_page = useSelector((state) => state.movie[2]) || 0;
+    const total_result = useSelector((state) => state.movie[1]);
+    const total_page = useSelector((state) => state.movie[2]);
 
     useEffect(() => {
-        if (movies)
+        if (movies && movies.length > 0) {
             setmovieList(movies);
-    }, [movies]);
+            console.log(movies);
+        }
 
-    // This is to stop scroll for mvoie when filter box is open
-    const style = {
-        position: "fixed"
-    };
+        if (typeof total_result === "number")
+            setTotalResult(total_result);
+
+        if (typeof total_page === "number")
+            setTotalPage(total_page);
+
+    }, [movies, total_result, total_page]);
+
 
     //Responsive design: Breakpoint for moveicard
     const getBreakpointClass = () => {
         if (windowWidth <= 540)
-            return 'row-cols-1';
-        else if (windowWidth <= 900)
             return 'row-cols-2';
+        else if (windowWidth <= 900)
+            return 'row-cols-3';
         else if (windowWidth <= 960)
             return 'row-cols-4';
         else
@@ -40,19 +47,19 @@ export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, show
     const movieCardClass = getBreakpointClass();
 
     return (
-        <div className="movies-container" style={windowWidth < 750 && showFilter ? style : null}>
+        <div className="movies-container" style={windowWidth < 750 && showFilter ? { position: "fixed" } : null}>
             <MovieCategory
                 selectedGenre={selectedGenre}
                 categoryIndex={categoryIndex}
                 setCategoryIndex={setCategoryIndex}
                 setShowFilter={setShowFilter}
-                totalResult={total_result}
+                totalResult={totalResult}
                 queryMovieSearch={queryMovieSearch}
                 history={history} />
 
             <br />
             {
-                movieList.length > 0
+                movieList.length >= 1
                     ?
                     (
                         <div className={`row ${movieCardClass}`}>
@@ -72,7 +79,7 @@ export const MovieList = ({ categoryIndex, setCategoryIndex, selectedGenre, show
             }
 
             {
-                total_page > 1 ? <Pagination queryMovieSearch={queryMovieSearch} totalPage={total_page} pageNumber={pageNumber} history={history} /> : null
+                totalPage > 1 ? <Pagination queryMovieSearch={queryMovieSearch} totalPage={totalPage} pageNumber={pageNumber} history={history} /> : null
             }
 
         </div>
