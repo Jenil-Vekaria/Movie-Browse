@@ -85,6 +85,10 @@
 	padding: 35px;
 }
 
+.section {
+	padding: 35px;
+}
+
 .show-all {
 	border: 1px solid red;
 	width: 80px;

@@ -6,14 +6,12 @@ import posterPlaceholder from '../../../images/posterPlaceholder.png';
 
 import './styles.css';
 import MovieCredit from './MovieCredit/MovieCredit';
+import { MovieImages } from './MovieImages/MovieImages';
 
 export const MovieInfo = () => {
     const icontStyle = { color: "white", fontSize: "2rem" };
 
     const movie = useSelector((state) => state.movie[0]) || {};
-    const movieImages = useSelector((state) => state.movie[2]) || [];
-
-    console.log(movieImages);
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
     const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
@@ -72,10 +70,7 @@ export const MovieInfo = () => {
                         </div>
                     </div>
 
-                    <br />
-                    <br />
-                    <br />
-
+                    <MovieImages />
                     <MovieCredit />
                 </div >
             )
