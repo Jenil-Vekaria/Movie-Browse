@@ -4,14 +4,34 @@
 }
 .backdrop {
 	height: 100vh;
+	width: 100vw;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	cursor: pointer;
+	transition: 1s ease-in;
 	display: flex;
 	justify-content: center;
-	padding-top: 250px;
-	transition: 1s ease-in;
+	align-items: center;
+}
+
+.watch-trailer {
+	display: flex;
+	width: fit-content;
+	opacity: 0.75;
+	cursor: pointer;
+	color: white;
+	text-decoration: none;
+	margin-bottom: 250px;
+}
+
+.watch-trailer:hover {
+	color: white;
+	opacity: 1;
+}
+
+.disabled {
+	pointer-events: none;
+	cursor: none;
 }
 
 .movie-info-display {

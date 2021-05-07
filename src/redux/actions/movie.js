@@ -67,13 +67,15 @@ export const getMovieInfo = (id) => async (distpatch) => {
         const { data } = await api.fetchMovieInfo(id);
         const castData = await api.fetchMovieCredit(id);
         const backdropsData = await api.fetchMovieImages(id);
+        const trailer = await api.fetchMovieTrailer(id);
 
         distpatch({
             type: "FETCH_MOVIE",
             payload: {
                 movieInfo: data,
                 movieCasts: castData.data.cast,
-                movieBackdrops: backdropsData.data.backdrops
+                movieBackdrops: backdropsData.data.backdrops,
+                movieTrailer: trailer.data.results
             }
         });
     } catch (error) {

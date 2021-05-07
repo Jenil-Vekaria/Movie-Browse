@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiClock, FiPlay, FiHeart } from "react-icons/fi";
 import { FaImdb } from "react-icons/fa";
 import { useSelector } from 'react-redux';
@@ -9,9 +9,11 @@ import MovieCredit from './MovieCredit/MovieCredit';
 import { MovieImages } from './MovieImages/MovieImages';
 
 export const MovieInfo = () => {
+    const [movieTrailer, setMovieTrailer] = useState('');
     const icontStyle = { color: "white", fontSize: "2rem" };
 
     const movie = useSelector((state) => state.movie[0]) || {};
+    const trailer = useSelector((state) => state.movie[3]);
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
     const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
@@ -23,14 +25,29 @@ export const MovieInfo = () => {
                             url(${backdropURL})`
     };
 
+    useEffect(() => {
+        if (trailer && trailer.length) {
+            const filteredTrailer = trailer.find(video => video.type === 'Trailer');
+            console.log(filteredTrailer);
+
+            if (filteredTrailer)
+                setMovieTrailer(`https://www.youtube.com/watch?v=${filteredTrailer.key}`);
+        }
+
+    }, [trailer]);
+
     return (
         movie.original_title ?
             (
 
                 <div className="view-movie-container">
                     <div className="backdrop" style={backdropStyle}>
-                        <FiPlay style={icontStyle} />
-                        <h3>Watch Trailer</h3>
+                        <div>
+                            <a href={`${movieTrailer}`} target="_blank" rel="noreferrer noopener" className={`watch-trailer ${!movieTrailer ? 'disabled' : ''}`}>
+                                <FiPlay style={icontStyle} />
+                                <h3>{movieTrailer ? 'Watch Trailer' : 'No Trailer Available'}</h3>
+                            </a>
+                        </div>
                     </div>
                     <div className="movie-info-display row row-cols-1 row-cols-lg-2">
                         <img className="poster col-xl-3 col-lg-4 col-md-4 col-sm-6" src={posterURL} alt="movie_poster" />
