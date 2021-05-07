@@ -14,9 +14,11 @@ export const MovieInfo = () => {
 
     const movie = useSelector((state) => state.movie[0]) || {};
     const trailer = useSelector((state) => state.movie[3]);
+    const backdrops = useSelector((state) => state.movie[2]);
+    const movieCredit = useSelector((state) => state.movie[1]);
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
-    const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : posterPlaceholder;
+    const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : posterPlaceholder;
     const backdropStyle = {
         background: ` linear-gradient(
                             to top,rgb(24, 33, 48),
@@ -28,7 +30,6 @@ export const MovieInfo = () => {
     useEffect(() => {
         if (trailer && trailer.length) {
             const filteredTrailer = trailer.find(video => video.type === 'Trailer');
-            console.log(filteredTrailer);
 
             if (filteredTrailer)
                 setMovieTrailer(`https://www.youtube.com/watch?v=${filteredTrailer.key}`);
@@ -87,8 +88,9 @@ export const MovieInfo = () => {
                         </div>
                     </div>
 
-                    <MovieImages />
-                    <MovieCredit />
+                    {backdrops.length ? <MovieImages backdrops={backdrops} /> : null}
+                    {movieCredit.length ? <MovieCredit movieCredit={movieCredit} /> : null}
+
                 </div >
             )
             :

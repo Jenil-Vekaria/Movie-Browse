@@ -3,13 +3,12 @@ import { useSelector } from 'react-redux';
 import posterPlaceholder from '../../../../images/posterPlaceholder.png';
 import { WindowSize } from '../../../../util/WindowSize';
 
-const MovieCredit = () => {
+const MovieCredit = ({ movieCredit }) => {
     const [showMore, setshowMore] = useState(false);
     const [displayLimit, setDisplayLimit] = useState(12);
     const [movieCredits, setmovieCredits] = useState([]);
     const windowWidth = WindowSize();
 
-    const movieCredit = useSelector((state) => state.movie[1]);
 
     const getBreakpointClass = () => {
         if (windowWidth <= 540)
@@ -42,7 +41,7 @@ const MovieCredit = () => {
     return (
 
         movieCredits.length > 0 ? (
-            <div className="movie-cast-container d-flex flex-column align-items-center">
+            <div className="movie-cast-container d-flex flex-column ">
                 <div className="d-flex" style={{ width: "100%" }}>
                     <h1 className="header-title">Cast</h1>
                     <div className="d-flex justify-content-end form-switch" style={{ width: 150 }}>

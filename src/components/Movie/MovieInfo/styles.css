@@ -4,11 +4,9 @@
 }
 .backdrop {
 	height: 100vh;
-	width: 100vw;
-	background-position: center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	transition: 1s ease-in;
 	display: flex;
 	justify-content: center;
 	align-items: center;

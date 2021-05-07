@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ImageGallery from 'react-image-gallery';
-export const MovieImages = () => {
+export const MovieImages = ({ backdrops }) => {
 
     const [movieBackdrops, setMovieBackdrops] = useState([]);
 
-    const backdrops = useSelector((state) => state.movie[2]);
 
     useEffect(() => {
         if (backdrops.length > 0) {
@@ -13,7 +12,7 @@ export const MovieImages = () => {
                 original: `https://image.tmdb.org/t/p/original${backdrop.file_path}`,
                 thumbnail: `https://image.tmdb.org/t/p/w300${backdrop.file_path}`
             }));
-            console.log(images);
+
             setMovieBackdrops(images);
         }
     }, [backdrops]);
