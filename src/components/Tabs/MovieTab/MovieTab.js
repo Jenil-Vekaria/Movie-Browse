@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Search } from '../../Search/Search.js';
-import { MovieList } from '../../Movie/MovieList/MovieList';
+import { MovieBrowser } from '../../Movie/MovieBrowser/MovieBrowser';
 import { MovieFilter } from '../../Movie/MovieFilter/MovieFilter';
 import { MovieInfo } from '../../Movie/MovieInfo/MovieInfo.js';
 import { useDispatch } from 'react-redux';
@@ -115,7 +115,7 @@ export const MovieTab = ({ location: { search } }) => {
                             <Search queryMovieSearch={queryMovieSearch} />
                             <div className="movie-container">
                                 <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} history={history} />
-                                <MovieList categoryIndex={categoryIndex} setCategoryIndex={setCategoryIndex} selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} history={history} />
+                                <MovieBrowser categoryIndex={categoryIndex} setCategoryIndex={setCategoryIndex} selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} history={history} />
                             </div>
                         </>
                     )
