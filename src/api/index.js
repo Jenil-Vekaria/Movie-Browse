@@ -17,7 +17,7 @@
 import axios from 'axios';
 
 const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
-const paramAPIKey = "api_key=dba18a1312b83aca86f1dc2139f0a473";
+const paramAPIKey = `api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`;
 const paramLanguage = "language=en-US";
 const paramReleaseYear = "release_date.gte=2016-01-01&release_date.lte=2024-01-01";
 const paramSortby = "sort_by=vote_count.desc";
