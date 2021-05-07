@@ -34,3 +34,4 @@ export const fetchMovieInfo = (id) => API.get(`/movie/${id}?${requestParams}`);
 export const fetchMovieCredit = (id) => API.get(`/movie/${id}/credits?${requestParams}`);
 export const fetchMovieImages = (id) => API.get(`/movie/${id}/images?${paramAPIKey}`);
 export const fetchMovieTrailer = (id) => API.get(`/movie/${id}/videos?${requestParams}`);
+export const fetchSimilarMovies = (id) => API.get(`/movie/${id}/similar?${requestParams}&page=1`);

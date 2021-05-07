@@ -68,6 +68,7 @@ export const getMovieInfo = (id) => async (distpatch) => {
         const castData = await api.fetchMovieCredit(id);
         const backdropsData = await api.fetchMovieImages(id);
         const trailer = await api.fetchMovieTrailer(id);
+        const similarMovies = await api.fetchSimilarMovies(id);
 
         distpatch({
             type: "FETCH_MOVIE",
@@ -75,7 +76,8 @@ export const getMovieInfo = (id) => async (distpatch) => {
                 movieInfo: data,
                 movieCasts: castData.data.cast,
                 movieBackdrops: backdropsData.data.backdrops,
-                movieTrailer: trailer.data.results
+                movieTrailer: trailer.data.results,
+                similarMovies: similarMovies.data.results
             }
         });
     } catch (error) {
