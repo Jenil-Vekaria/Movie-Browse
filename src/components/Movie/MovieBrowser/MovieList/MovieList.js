@@ -2,7 +2,7 @@ import React from 'react';
 import { WindowSize } from '../../../../util/WindowSize';
 import { MovieCard } from '../../MovieCard/MovieCard';
 
-const MovieList = ({ movieList, history }) => {
+export const MovieList = ({ movieList, history }) => {
 
     const windowWidth = WindowSize();
 
@@ -30,4 +30,3 @@ const MovieList = ({ movieList, history }) => {
     );
 };
 
-export default MovieList;

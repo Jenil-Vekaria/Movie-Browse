@@ -32,6 +32,7 @@ export const MovieTab = ({ location: { search } }) => {
     const { genere, movieId } = useParams();
     //movieName=star%20wars&page=2
     useEffect(() => {
+        window.scrollTo(0, 0);
 
         //Reset Value
         setqueryMovieSearch('');
@@ -52,7 +53,6 @@ export const MovieTab = ({ location: { search } }) => {
 
         if (fieldValueMapping.page) {
             setPageNumber(parseInt(fieldValueMapping.page));
-            window.scrollTo(0, 0);
         }
 
         if (genere) {
@@ -67,9 +67,8 @@ export const MovieTab = ({ location: { search } }) => {
             dispatch(getMovie(fieldValueMapping.movieName, pageNumber));
         }
         else if (movieId) {
+            dispatch({ type: "CLEAR" });
             dispatch(getMovieInfo(movieId));
-            // dispatch(getMovieCredit(movieId));
-            // dispatch(getMovieImages(movieId));
         }
         else {
             // else {
@@ -109,7 +108,7 @@ export const MovieTab = ({ location: { search } }) => {
         <div className="movietab-container">
 
             {
-                movieId !== undefined ? <MovieInfo />
+                movieId !== undefined ? <MovieInfo history={history} />
                     : (
                         <>
                             <Search queryMovieSearch={queryMovieSearch} />

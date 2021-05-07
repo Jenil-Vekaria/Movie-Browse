@@ -7,12 +7,14 @@ import posterPlaceholder from '../../../images/posterPlaceholder.png';
 import './styles.css';
 import MovieCredit from './MovieCredit/MovieCredit';
 import { MovieImages } from './MovieImages/MovieImages';
+import { SimilarMovies } from './SimilarMovies/SimilarMovies';
 
-export const MovieInfo = () => {
+export const MovieInfo = ({ history }) => {
     const [movieTrailer, setMovieTrailer] = useState('');
     const icontStyle = { color: "white", fontSize: "2rem" };
 
     const movie = useSelector((state) => state.movie[0]) || {};
+    const similarMovie = useSelector((state) => state.movie[4]);
     const trailer = useSelector((state) => state.movie[3]);
     const backdrops = useSelector((state) => state.movie[2]);
     const movieCredit = useSelector((state) => state.movie[1]);
@@ -87,10 +89,9 @@ export const MovieInfo = () => {
                             <button type="button" className="btn btn-success"><FiHeart /> Favourite</button>
                         </div>
                     </div>
-
                     {backdrops.length ? <MovieImages backdrops={backdrops} /> : null}
                     {movieCredit.length ? <MovieCredit movieCredit={movieCredit} /> : null}
-
+                    {similarMovie.length ? <SimilarMovies movieList={similarMovie} history={history} /> : null}
                 </div >
             )
             :

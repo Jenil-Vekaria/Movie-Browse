@@ -41,7 +41,7 @@ const MovieCredit = ({ movieCredit }) => {
     return (
 
         movieCredits.length > 0 ? (
-            <div className="movie-cast-container d-flex flex-column ">
+            <div className="section d-flex flex-column ">
                 <div className="d-flex" style={{ width: "100%" }}>
                     <h1 className="header-title">Cast</h1>
                     <div className="d-flex justify-content-end form-switch" style={{ width: 150 }}>

@@ -10,6 +10,8 @@ const movieReducer = (movie = [], action) => {
                 action.payload.movieTrailer,
                 action.payload.similarMovies
             ];
+        case "CLEAR":
+            return [];
         default:
             return movie;
     }

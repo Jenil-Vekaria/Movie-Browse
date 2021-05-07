@@ -5,7 +5,7 @@ import { WindowSize } from '../../../util/WindowSize';
 
 import './styles.css';
 import { Pagination } from '../../Pagination/Pagination';
-import MovieList from './MovieList/MovieList';
+import { MovieList } from './MovieList/MovieList';
 
 export const MovieBrowser = ({ categoryIndex, setCategoryIndex, selectedGenre, showFilter, setShowFilter, queryMovieSearch, pageNumber, history }) => {
     const [movieList, setmovieList] = useState([]);
