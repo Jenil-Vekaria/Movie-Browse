@@ -20,7 +20,6 @@ export const MovieBrowser = ({ categoryIndex, setCategoryIndex, selectedGenre, s
     useEffect(() => {
         if (movies && movies.length > 0) {
             setmovieList(movies);
-            console.log(movies);
         }
 
         if (typeof total_result === "number")
