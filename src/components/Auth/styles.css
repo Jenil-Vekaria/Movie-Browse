@@ -1,0 +1,52 @@
+.form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.google-logo {
+	margin-right: 10px;
+}
+
+.google-signin {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 30px;
+	border-radius: 5px;
+	cursor: pointer;
+	opacity: 0.95;
+	transition: 0.5 ease;
+}
+
+.google-signin:hover {
+	opacity: 1;
+}
+
+.form-control {
+	background: #e8e8e8;
+	color: black;
+	border: none;
+}
+
+.backdrop {
+	background: linear-gradient(
+			to top,
+			rgba(24, 33, 48, 0.7),
+			rgba(24, 33, 48, 0.7)
+		),
+		url("https://image.tmdb.org/t/p/w1920_and_h1080_multi_faces/s3TBrRGB1iav7gFOCNx3H31MoES.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.have-account {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+	.backdrop {
+		display: none;
+	}
+}

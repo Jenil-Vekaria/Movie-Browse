@@ -1,10 +1,11 @@
 .favourite-container {
-	margin-left: 60px;
+	padding-left: 50px;
 	height: 100vh;
+	overflow-x: hidden;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
 	.favourite-container {
-		margin-left: 0;
+		padding-left: 0;
 	}
 }
