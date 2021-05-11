@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { FiSearch, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
 export const Sidenav = () => {
     const [tabNumber, settabNumber] = useState(0);
+    const dispatch = useDispatch();
+
+    const handleSignout = () => {
+        dispatch({ type: "LOGOUT" });
+        settabNumber(0);
+    };
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
     return (
@@ -27,7 +34,7 @@ export const Sidenav = () => {
                 </Link>
 
                 <Link to="/search">
-                    <li className="nav-item" onClick={() => settabNumber(0)}>
+                    <li className="nav-item" onClick={handleSignout}>
                         <FiLogOut style={iconStyles} />
                     </li>
                 </Link>

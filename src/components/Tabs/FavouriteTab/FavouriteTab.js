@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { TokenValidation } from '../../../util/TokenValidation';
 import { Auth } from '../../Auth/Auth';
+
 import './styles.css';
 
-
 export const FavouriteTab = () => {
+    const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    useEffect(() => {
+        const isTokenValid = TokenValidation(userProfile);
+
+        if (isTokenValid)
+            setUserProfile(JSON.parse(localStorage.getItem('profile')));
+
+    }, [userProfile]);
+
     return (
         <div className="favourite-container">
-            <Auth />
+            {
+                !userProfile ? <Auth /> :
+                    (
+                        <p>Favourite</p>
+                    )
+            }
         </div>
     );
 };
 
-{/* <img src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg" alt="poster" /> */ }
 

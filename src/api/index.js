@@ -17,6 +17,7 @@
 import axios from 'axios';
 
 const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
+const AUTH = axios.create({ baseURL: "http://localhost:4000/user" });
 const paramAPIKey = `api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`;
 const paramLanguage = "language=en-US";
 const paramReleaseYear = "release_date.gte=2016-01-01&release_date.lte=2024-01-01";
@@ -35,3 +36,6 @@ export const fetchMovieCredit = (id) => API.get(`/movie/${id}/credits?${requestP
 export const fetchMovieImages = (id) => API.get(`/movie/${id}/images?${paramAPIKey}`);
 export const fetchMovieTrailer = (id) => API.get(`/movie/${id}/videos?${requestParams}`);
 export const fetchSimilarMovies = (id) => API.get(`/movie/${id}/similar?${requestParams}&page=1`);
+
+export const signIn = (formData) => AUTH.post('/signin', formData);
+export const signUp = (formData) => AUTH.post('/signup', formData);
