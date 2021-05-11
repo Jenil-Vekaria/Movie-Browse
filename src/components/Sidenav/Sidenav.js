@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiSearch, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
+import { FiSearch, FiFilm, FiTv, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.css';
@@ -19,9 +19,14 @@ export const Sidenav = () => {
             <ul className="navbar-list">
                 <Link to="/search">
                     <li className={`nav-item ${tabNumber === 0 ? 'active' : null}`} onClick={() => settabNumber(0)}>
-                        <FiSearch style={iconStyles} />
+                        <FiFilm style={iconStyles} />
                     </li>
                 </Link>
+                {/* <Link to="/tvshows">
+                    <li className={`nav-item ${tabNumber === 1 ? 'active' : null}`} onClick={() => settabNumber(1)}>
+                        <FiTv style={iconStyles} />
+                    </li>
+                </Link> */}
                 <Link to="/favourite">
                     <li className={`nav-item ${tabNumber === 1 ? 'active' : null}`} onClick={() => settabNumber(1)}>
                         <FiHeart style={iconStyles} />
@@ -33,7 +38,7 @@ export const Sidenav = () => {
                     </li>
                 </Link>
 
-                <Link to="/search">
+                <Link to="/search" className="logout">
                     <li className="nav-item" onClick={handleSignout}>
                         <FiLogOut style={iconStyles} />
                     </li>

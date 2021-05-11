@@ -35,7 +35,7 @@ a {
 	width: 100%;
 }
 
-a:last-child {
+.logout {
 	margin-top: auto;
 }
 
@@ -57,5 +57,9 @@ a:last-child {
 
 	a {
 		height: 100%;
+	}
+
+	.logout {
+		display: none;
 	}
 }
