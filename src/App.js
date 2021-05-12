@@ -7,7 +7,6 @@ import { Sidenav } from './components/Sidenav/Sidenav';
 
 import './App.css';
 
-
 export const App = () => {
 
   console.log('Built by Jenil');

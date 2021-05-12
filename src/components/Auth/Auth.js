@@ -108,7 +108,7 @@ export const Auth = () => {
 
                 </form>
             </div>
-            <div className="backdrop col">
+            <div className="auth-backdrop col">
             </div>
         </div >
 

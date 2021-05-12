@@ -42,7 +42,6 @@ export const MovieInfo = ({ history }) => {
     return (
         movie.original_title ?
             (
-
                 <div className="view-movie-container">
                     <div className="backdrop" style={backdropStyle}>
                         <div>

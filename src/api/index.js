@@ -16,8 +16,18 @@
 
 import axios from 'axios';
 
-const API = axios.create({ baseURL: `https://api.themoviedb.org/3` });
-const AUTH = axios.create({ baseURL: "http://localhost:4000/user" });
+const MOVIEAPI = axios.create({ baseURL: `https://api.themoviedb.org/3` });
+const API = axios.create({ baseURL: "http://localhost:4000" });
+
+API.interceptors.request.use((req) => {
+    const userProfile = localStorage.getItem('profile');
+
+    if (userProfile)
+        req.headers.Authorization = `Bearer ${JSON.parse(userProfile).token}`;
+
+    return req;
+});
+
 const paramAPIKey = `api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`;
 const paramLanguage = "language=en-US";
 const paramReleaseYear = "release_date.gte=2016-01-01&release_date.lte=2024-01-01";
@@ -25,17 +35,19 @@ const paramSortby = "sort_by=vote_count.desc";
 
 const requestParams = `${paramAPIKey}&${paramLanguage}`;
 
-export const fetchPopular = (page) => API.get(`/movie/popular?${requestParams}&page=${page}`);
-export const fetchTopRated = (page) => API.get(`/movie/top_rated?${requestParams}&page=${page}`);
-export const fetchUpcoming = (page) => API.get(`/movie/upcoming?${requestParams}&page=${page}`);
-export const fetchLatest = (page) => API.get(`/movie/now_playing?${requestParams}&page=${page}`);
-export const fetchByGenre = (id, page) => API.get(`/discover/movie?${requestParams}&${paramSortby}&${paramReleaseYear}&with_genres=${id}&page=${page}`);
-export const fetchMovie = (name, page) => API.get(`/search/movie?${requestParams}&query=${name}&page=${page}`);
-export const fetchMovieInfo = (id) => API.get(`/movie/${id}?${requestParams}`);
-export const fetchMovieCredit = (id) => API.get(`/movie/${id}/credits?${requestParams}`);
-export const fetchMovieImages = (id) => API.get(`/movie/${id}/images?${paramAPIKey}`);
-export const fetchMovieTrailer = (id) => API.get(`/movie/${id}/videos?${requestParams}`);
-export const fetchSimilarMovies = (id) => API.get(`/movie/${id}/similar?${requestParams}&page=1`);
+export const fetchPopular = (page) => MOVIEAPI.get(`/movie/popular?${requestParams}&page=${page}`);
+export const fetchTopRated = (page) => MOVIEAPI.get(`/movie/top_rated?${requestParams}&page=${page}`);
+export const fetchUpcoming = (page) => MOVIEAPI.get(`/movie/upcoming?${requestParams}&page=${page}`);
+export const fetchLatest = (page) => MOVIEAPI.get(`/movie/now_playing?${requestParams}&page=${page}`);
+export const fetchByGenre = (id, page) => MOVIEAPI.get(`/discover/movie?${requestParams}&${paramSortby}&${paramReleaseYear}&with_genres=${id}&page=${page}`);
+export const fetchMovie = (name, page) => MOVIEAPI.get(`/search/movie?${requestParams}&query=${name}&page=${page}`);
+export const fetchMovieInfo = (id) => MOVIEAPI.get(`/movie/${id}?${requestParams}`);
+export const fetchMovieCredit = (id) => MOVIEAPI.get(`/movie/${id}/credits?${requestParams}`);
+export const fetchMovieImages = (id) => MOVIEAPI.get(`/movie/${id}/images?${paramAPIKey}`);
+export const fetchMovieTrailer = (id) => MOVIEAPI.get(`/movie/${id}/videos?${requestParams}`);
+export const fetchSimilarMovies = (id) => MOVIEAPI.get(`/movie/${id}/similar?${requestParams}&page=1`);
 
-export const signIn = (formData) => AUTH.post('/signin', formData);
-export const signUp = (formData) => AUTH.post('/signup', formData);
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);
+
+export const fetchFavourite = () => API.get('/movie/favourite');
