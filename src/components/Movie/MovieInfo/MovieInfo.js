@@ -85,7 +85,7 @@ export const MovieInfo = ({ history }) => {
                                 </div>
                             </div>
 
-                            <button type="button" className="btn btn-success"><FiHeart /> Favourite</button>
+                            <button type="button" className="favourite-btn btn btn-success"><FiHeart /> Favourite</button>
                         </div>
                     </div>
                     {backdrops.length ? <MovieImages backdrops={backdrops} /> : null}

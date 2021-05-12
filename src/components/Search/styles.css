@@ -1,14 +1,55 @@
+.movie-search-form {
+	background-color: var(--search-bar);
+	display: flex;
+	position: fixed;
+	align-items: center;
+	height: 55px;
+	width: 100%;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.form {
+	width: 80%;
+}
+
+.user-container {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-image {
+	width: 40px;
+	height: 40px;
+	background-color: rgba(100, 43, 192, 0.8);
+	border-radius: 50%;
+	font-size: 20px;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.7s ease;
+	cursor: pointer;
+}
+
+.profile-image:hover {
+	background-color: rgba(100, 43, 192, 1);
+}
 .movie-search-bar {
 	background-color: var(--search-bar);
 	border: none;
 	outline: none;
 	width: 100%;
-	padding: 13px 25px;
-	margin-top: -1px;
 	color: white;
 	font-size: 20px;
+	padding: 0 25px;
 	font-family: "Open Sans", sans-serif;
-	position: fixed;
-	overflow: hidden;
-	z-index: 2;
+}
+
+@media only screen and (max-width: 750px) {
+	.sign-in {
+		display: none;
+	}
 }
