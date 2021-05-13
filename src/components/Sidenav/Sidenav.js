@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch, FiFilm, FiTv, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
 export const Sidenav = () => {
-    const [tabNumber, settabNumber] = useState(0);
+    const [tabNumber, settabNumber] = useState();
     const dispatch = useDispatch();
+    const path = window.location.pathname;
 
     const handleSignout = () => {
         dispatch({ type: "LOGOUT" });
         settabNumber(0);
     };
+
+    useEffect(() => {
+        if (path === '/search')
+            settabNumber(0);
+        else if (path === '/favourite')
+            settabNumber(1);
+        else if (path === '/user')
+            settabNumber(2);
+    }, [path]);
 
     let iconStyles = { color: "#F3F3F4", fontSize: "1.2em" };
     return (

@@ -38,15 +38,13 @@ export const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const value = e.target.innerHTML;
-        console.log(value);
         if (isSignIn) {
             dispatch(signIn(userData, history))
-                .then(data => setErrorMessage(data));
+                .then(data => data ? setErrorMessage(data) : null);
         }
         else {
             dispatch(signUp(userData, history))
-                .then(data => setErrorMessage(data));
+                .then(data => data ? setErrorMessage(data) : null);
         }
     };
 

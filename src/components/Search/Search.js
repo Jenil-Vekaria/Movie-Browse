@@ -15,6 +15,7 @@ export const Search = () => {
             setUserProfile(JSON.parse(localStorage.getItem('profile')));
 
     }, []);
+
     const handleSearch = (e) => {
         e.preventDefault();
 
