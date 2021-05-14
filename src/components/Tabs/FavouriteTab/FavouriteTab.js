@@ -10,10 +10,10 @@ import { MovieList } from '../../Movie/MovieBrowser/MovieList/MovieList';
 import './styles.css';
 
 export const FavouriteTab = () => {
-    const favouriteGroup = ["Movies", "TV Shows"];
+    const favouriteGroup = ["Movies"];
     const history = useHistory();
     const dispatch = useDispatch();
-    const favouriteData = useSelector(state => state.favourite);
+    const userFavouriteData = useSelector(state => state.favourite);
 
     const [favouriteMovies, setFavouriteMovies] = useState([]);
     const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -22,19 +22,19 @@ export const FavouriteTab = () => {
     useEffect(() => {
         const isTokenValid = TokenValidation(JSON.parse(localStorage.getItem('profile')));
 
-        if (isTokenValid)
-            dispatch(getFavourite());
-        else
+        if (!isTokenValid)
             dispatch({ type: "LOGOUT" });
+        else
+            dispatch(getFavourite());
 
         setisLoggedIn(isTokenValid);
 
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
-        if (favouriteData.movies)
-            setFavouriteMovies(favouriteData.movies);
-    }, [favouriteData]);
+        if (userFavouriteData.movies)
+            setFavouriteMovies(userFavouriteData.movies);
+    }, [userFavouriteData]);
 
     return (
         <div className="favourite-container">

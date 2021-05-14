@@ -14,7 +14,7 @@ import {
     getMovie,
     getMovieInfo
 } from '../../../redux/actions/movie';
-
+import { getFavourite } from '../../../redux/actions/favourite';
 import { genres } from '../../../data/Genres';
 import './styles.css';
 
@@ -91,6 +91,7 @@ export const MovieTab = ({ location: { search } }) => {
             }
         }
 
+        dispatch(getFavourite());
     }, [search, pageNumber, history, genere, movieId, categoryIndex, dispatch]);
 
     const upperCaseWord = (str) => {
@@ -111,7 +112,7 @@ export const MovieTab = ({ location: { search } }) => {
                 movieId !== undefined ? <MovieInfo history={history} />
                     : (
                         <>
-                            <Search queryMovieSearch={queryMovieSearch} />
+                            <Search queryMovieSearch={queryMovieSearch} history={history} />
                             <div className="movie-container">
                                 <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} history={history} />
                                 <MovieBrowser categoryIndex={categoryIndex} setCategoryIndex={setCategoryIndex} selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} history={history} />

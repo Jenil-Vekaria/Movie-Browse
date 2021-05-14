@@ -51,3 +51,5 @@ export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
 
 export const fetchFavourite = () => API.get('/movie/favourite');
+export const favouriteMovie = (id) => API.patch(`/movie/${id}/favourite`);
+export const createMovie = (data) => API.post(`/movie`, data);

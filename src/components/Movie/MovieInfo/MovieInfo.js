@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { FiClock, FiPlay, FiHeart } from "react-icons/fi";
 import { FaImdb } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import posterPlaceholder from '../../../images/posterPlaceholder.png';
-
-import './styles.css';
+import { TokenValidation } from '../../../util/TokenValidation';
 import MovieCredit from './MovieCredit/MovieCredit';
 import { MovieImages } from './MovieImages/MovieImages';
 import { SimilarMovies } from './SimilarMovies/SimilarMovies';
+import { favouriteMovie } from '../../../redux/actions/favourite';
+import './styles.css';
 
 export const MovieInfo = ({ history }) => {
     const [movieTrailer, setMovieTrailer] = useState('');
+    const [isFavourite, setIsFavourite] = useState(false);
+    const [showSignInMessage, setShowSignInMessage] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
     const icontStyle = { color: "white", fontSize: "2rem" };
 
+    const dispatch = useDispatch();
     const movie = useSelector((state) => state.movie[0]) || {};
     const similarMovie = useSelector((state) => state.movie[4]);
     const trailer = useSelector((state) => state.movie[3]);
     const backdrops = useSelector((state) => state.movie[2]);
     const movieCredit = useSelector((state) => state.movie[1]);
+    const userFavouriteData = useSelector(state => state.favourite.movieIds);
 
     const backdropURL = movie.backdrop_path ? `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}` : 'https://wallpaperaccess.com/full/1561985.jpg';
     const posterURL = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : posterPlaceholder;
@@ -30,6 +36,16 @@ export const MovieInfo = ({ history }) => {
     };
 
     useEffect(() => {
+        setShowSignInMessage(false);
+        setShowDialog(false);
+    }, [history.location]);
+
+    useEffect(() => {
+        if (userFavouriteData?.length > 0)
+            setIsFavourite(userFavouriteData.includes(movie.id + ""));
+    }, [userFavouriteData, movie.id]);
+
+    useEffect(() => {
         if (trailer && trailer.length) {
             const filteredTrailer = trailer.find(video => video.type === 'Trailer');
 
@@ -38,6 +54,25 @@ export const MovieInfo = ({ history }) => {
         }
 
     }, [trailer]);
+
+    const handleFavourite = () => {
+        const isTokenValid = TokenValidation(JSON.parse(localStorage.getItem('profile')));
+
+        if (isTokenValid) {
+            const movieData = {
+                title: movie.original_title,
+                poster_path: movie.poster_path,
+                id: movie.id,
+                release_date: movie.release_date
+            };
+            dispatch(favouriteMovie(movie.id, movieData));
+            setIsFavourite(prevIsFavourite => !prevIsFavourite);
+            setShowDialog(true);
+        }
+        else {
+            setShowSignInMessage(true);
+        }
+    };
 
     return (
         movie.original_title ?
@@ -85,12 +120,23 @@ export const MovieInfo = ({ history }) => {
                                 </div>
                             </div>
 
-                            <button type="button" className="favourite-btn btn btn-success"><FiHeart /> Favourite</button>
+                            <button type="button" className={`favourite-btn btn btn-${isFavourite ? 'danger' : 'success'}`} onClick={handleFavourite}><FiHeart style={{ marginRight: 10 }} />{isFavourite ? 'Unfavourite' : 'Favourite'}</button>
                         </div>
                     </div>
                     {backdrops.length ? <MovieImages backdrops={backdrops} /> : null}
                     {movieCredit.length ? <MovieCredit movieCredit={movieCredit} /> : null}
                     {similarMovie.length ? <SimilarMovies movieList={similarMovie} history={history} /> : null}
+
+                    <div className={`alert alert-${isFavourite ? 'warning' : 'danger'} alert-dismissible fade ${showDialog ? 'show' : ''}`} role="alert">
+                        <strong>{isFavourite ? 'Added to' : 'Removed from'} favourite</strong> {movie.original_title}<br></br>
+                        <button type="button" className="btn-close" onClick={() => setShowDialog(false)}></button>
+                    </div>
+
+                    <div className={`alert alert-danger alert-dismissible fade ${showSignInMessage ? 'show' : ''}`} role="alert">
+                        <strong>Please Sign In!</strong> To favourite movies
+                        <button type="button" className="btn-close" onClick={() => setShowSignInMessage(false)}></button>
+                    </div>
+
                 </div >
             )
             :
