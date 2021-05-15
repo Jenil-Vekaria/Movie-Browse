@@ -65,11 +65,12 @@ export const MovieInfo = ({ history }) => {
                 id: movie.id,
                 release_date: movie.release_date
             };
-            dispatch(favouriteMovie(movie.id, movieData));
             setIsFavourite(prevIsFavourite => !prevIsFavourite);
             setShowDialog(true);
+            dispatch(favouriteMovie(movie.id, movieData));
         }
         else {
+            setShowDialog(false);
             setShowSignInMessage(true);
         }
     };
@@ -127,16 +128,25 @@ export const MovieInfo = ({ history }) => {
                     {movieCredit.length ? <MovieCredit movieCredit={movieCredit} /> : null}
                     {similarMovie.length ? <SimilarMovies movieList={similarMovie} history={history} /> : null}
 
-                    <div className={`alert alert-${isFavourite ? 'warning' : 'danger'} alert-dismissible fade ${showDialog ? 'show' : ''}`} role="alert">
-                        <strong>{isFavourite ? 'Added to' : 'Removed from'} favourite</strong> {movie.original_title}<br></br>
-                        <button type="button" className="btn-close" onClick={() => setShowDialog(false)}></button>
-                    </div>
+                    {
+                        showDialog ?
+                            (
+                                <div className={`alert alert-${isFavourite ? 'warning' : 'danger'} alert-dismissible fade show`} role="alert" >
+                                    <strong>{isFavourite ? 'Added to' : 'Removed from'} favourite</strong> {movie.original_title}<br></br>
+                                    <button type="button" className="btn-close" onClick={() => setShowDialog(false)}></button>
+                                </div>
+                            ) : null
+                    }
 
-                    <div className={`alert alert-danger alert-dismissible fade ${showSignInMessage ? 'show' : ''}`} role="alert">
-                        <strong>Please Sign In!</strong> To favourite movies
-                        <button type="button" className="btn-close" onClick={() => setShowSignInMessage(false)}></button>
-                    </div>
-
+                    {
+                        showSignInMessage ?
+                            (
+                                <div className={`alert alert-danger alert-dismissible fade show`} role="alert">
+                                    <strong>Please Sign In!</strong> To favourite movies
+                                    <button type="button" className="btn-close" onClick={() => setShowSignInMessage(false)}></button>
+                                </div>
+                            ) : null
+                    }
                 </div >
             )
             :

@@ -24,16 +24,20 @@ export const FavouriteTab = () => {
 
         if (!isTokenValid)
             dispatch({ type: "LOGOUT" });
-        else
+        else {
+            setFavouriteMovies([]);
+            dispatch({ type: 'CLEAR_FAVOURITE' });
             dispatch(getFavourite());
+        }
 
         setisLoggedIn(isTokenValid);
 
     }, []);
 
     useEffect(() => {
-        if (userFavouriteData.movies)
+        if (userFavouriteData.movies?.length > 0) {
             setFavouriteMovies(userFavouriteData.movies);
+        }
     }, [userFavouriteData]);
 
     return (
@@ -54,7 +58,16 @@ export const FavouriteTab = () => {
                             {
                                 favouriteMovies.length >= 1 ?
                                     <MovieList movieList={favouriteMovies} history={history} />
-                                    : null
+                                    :
+                                    (
+                                        <>
+                                            <br />
+                                            <br />
+                                            <div className="spinner-border text-light" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </div>
+                                        </>
+                                    )
                             }
                         </div>
                     )

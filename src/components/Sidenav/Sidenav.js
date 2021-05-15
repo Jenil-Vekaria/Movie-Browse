@@ -11,6 +11,7 @@ export const Sidenav = () => {
 
     const handleSignout = () => {
         dispatch({ type: "LOGOUT" });
+        dispatch({ type: "CLEAR_FAVOURITE" });
         settabNumber(0);
     };
 

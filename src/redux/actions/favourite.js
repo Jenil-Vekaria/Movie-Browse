@@ -12,8 +12,7 @@ export const getFavourite = () => async (dispatch) => {
 export const favouriteMovie = (id, movieData) => async (dispatch) => {
     try {
         await api.createMovie(movieData);
-        const { data } = await api.favouriteMovie(id);
-        dispatch({ type: "FETCH_FAVOURITE", data });
+        await api.favouriteMovie(id);
     } catch (error) {
         console.error(error);
     }

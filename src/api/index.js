@@ -24,6 +24,8 @@ API.interceptors.request.use((req) => {
 
     if (userProfile)
         req.headers.Authorization = `Bearer ${JSON.parse(userProfile).token}`;
+    else
+        req.headers.Authorization = '';
 
     return req;
 });
