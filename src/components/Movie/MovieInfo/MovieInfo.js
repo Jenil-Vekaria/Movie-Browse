@@ -75,6 +75,14 @@ export const MovieInfo = ({ history }) => {
         }
     };
 
+    const getLoading = () => {
+        return (
+            <div className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        );
+    };
+
     return (
         movie.original_title ?
             (
@@ -131,7 +139,7 @@ export const MovieInfo = ({ history }) => {
                     {
                         showDialog ?
                             (
-                                <div className={`alert alert-${isFavourite ? 'warning' : 'danger'} alert-dismissible fade show`} role="alert" >
+                                <div className={`movie-info-alert alert alert-${isFavourite ? 'warning' : 'danger'} alert-dismissible fade show`} role="alert" >
                                     <strong>{isFavourite ? 'Added to' : 'Removed from'} favourite</strong> {movie.original_title}<br></br>
                                     <button type="button" className="btn-close" onClick={() => setShowDialog(false)}></button>
                                 </div>
@@ -141,7 +149,7 @@ export const MovieInfo = ({ history }) => {
                     {
                         showSignInMessage ?
                             (
-                                <div className={`alert alert-danger alert-dismissible fade show`} role="alert">
+                                <div className={`movie-info-alert alert alert-danger alert-dismissible fade show`} role="alert">
                                     <strong>Please Sign In!</strong> To favourite movies
                                     <button type="button" className="btn-close" onClick={() => setShowSignInMessage(false)}></button>
                                 </div>
@@ -149,11 +157,6 @@ export const MovieInfo = ({ history }) => {
                     }
                 </div >
             )
-            :
-            (
-                <div className="spinner-border text-light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            )
+            : getLoading()
     );
 };

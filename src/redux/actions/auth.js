@@ -9,8 +9,6 @@ export const signIn = (formData, history) => async (dispatch) => {
         history.push('/search');
     } catch (error) {
         const { data: { message } } = error.response;
-        dispatch({ type: "ERROR", data: message });
-
         return message;
     }
 
@@ -25,8 +23,6 @@ export const signUp = (formData, history) => async (dispatch) => {
 
     } catch (error) {
         const { data: { message } } = error.response;
-        dispatch({ type: "ERROR", data: message });
-
         return message;
     }
 };

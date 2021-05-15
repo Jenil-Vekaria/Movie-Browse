@@ -22,8 +22,10 @@ export const FavouriteTab = () => {
     useEffect(() => {
         const isTokenValid = TokenValidation(JSON.parse(localStorage.getItem('profile')));
 
-        if (!isTokenValid)
+        if (!isTokenValid) {
+            dispatch({ type: 'CLEAR_FAVOURITE' });
             dispatch({ type: "LOGOUT" });
+        }
         else {
             setFavouriteMovies([]);
             dispatch({ type: 'CLEAR_FAVOURITE' });
