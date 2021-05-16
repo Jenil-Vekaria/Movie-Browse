@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { FiSearch, FiFilm, FiTv, FiUser, FiHeart, FiLogOut } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { TokenValidation } from '../../util/TokenValidation';
 import './styles.css';
 
 export const Sidenav = () => {
     const [path, setPath] = useState('/search');
-    const [tabNumber, settabNumber] = useState();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [tabNumber, settabNumber] = useState(0);
+    const userProfile = JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -14,6 +17,17 @@ export const Sidenav = () => {
         if (location.pathname)
             setPath(location.pathname);
     }, [location]);
+
+    useEffect(() => {
+        const isTokenValid = TokenValidation(userProfile);
+
+        if (!isTokenValid) {
+            handleSignout();
+        }
+
+        setIsLoggedIn(isTokenValid);
+
+    }, [userProfile]);
 
     const handleSignout = () => {
         dispatch({ type: "LOGOUT" });
@@ -55,11 +69,17 @@ export const Sidenav = () => {
                     </li>
                 </Link>
 
-                <Link to="/search" className="logout">
-                    <li className="nav-item" onClick={handleSignout}>
-                        <FiLogOut style={iconStyles} />
-                    </li>
-                </Link>
+                {
+                    isLoggedIn ?
+                        (
+                            <Link to="/search" onClick={() => window.location.reload()} className="logout">
+                                <li className="nav-item" onClick={handleSignout}>
+                                    <FiLogOut style={iconStyles} />
+                                </li>
+                            </Link>
+                        ) : null
+                }
+
             </ul>
         </div>
     );
