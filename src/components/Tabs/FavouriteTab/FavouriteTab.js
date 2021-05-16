@@ -27,8 +27,8 @@ export const FavouriteTab = () => {
             dispatch({ type: "LOGOUT" });
         }
         else {
-            setFavouriteMovies([]);
             dispatch({ type: 'CLEAR_FAVOURITE' });
+            setFavouriteMovies([]);
             dispatch(getFavourite());
         }
 

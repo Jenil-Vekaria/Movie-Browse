@@ -53,7 +53,7 @@ export const Auth = () => {
             <div className="form-container col-md-6 col-sm-12">
                 <h1>{isSignIn ? 'Sign In' : 'Create Account'}</h1>
 
-                {
+                {/* {
                     !isSignIn ?
                         (
                             <>
@@ -66,7 +66,7 @@ export const Auth = () => {
                                 <p className="fs-5 mt-4 fw-lighter">or use email for registration:</p>
                             </>
                         ) : null
-                }
+                } */}
 
                 {
                     errorMessage ?
@@ -79,7 +79,7 @@ export const Auth = () => {
                 }
 
 
-                <form autoComplete="on" noValidate className="w-75 d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+                <form autoComplete="on" noValidate className="w-75 mt-4 d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                     {
                         !isSignIn ? <input type="text" className="form-control fw-light fs-5" placeholder="Username" name="username" value={userData.username} onChange={handleChange} /> : null
                     }
