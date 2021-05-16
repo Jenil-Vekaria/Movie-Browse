@@ -14,6 +14,7 @@ import {
     getMovie,
     getMovieInfo
 } from '../../../redux/actions/movie';
+import { WindowSize } from '../../../util/WindowSize';
 import { getFavourite } from '../../../redux/actions/favourite';
 import { genres } from '../../../data/Genres';
 import './styles.css';
@@ -28,7 +29,7 @@ export const MovieTab = ({ location: { search } }) => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const windowWidth = WindowSize();
     const { genere, movieId } = useParams();
     //movieName=star%20wars&page=2
     useEffect(() => {
@@ -94,6 +95,12 @@ export const MovieTab = ({ location: { search } }) => {
         dispatch(getFavourite());
     }, [search, pageNumber, history, genere, movieId, categoryIndex, dispatch]);
 
+    useEffect(() => {
+        if (windowWidth <= 750)
+            setShowFilter(false);
+        else
+            setShowFilter(true);
+    }, [windowWidth]);
     const upperCaseWord = (str) => {
         let words = str.split("_");
 
