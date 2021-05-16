@@ -51,6 +51,7 @@ export const fetchSimilarMovies = (id) => MOVIEAPI.get(`/movie/${id}/similar?${r
 
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
+export const updateProfile = (formData) => API.patch('/user/updateProfile', formData);
 
 export const fetchFavourite = () => API.get('/movie/favourite');
 export const favouriteMovie = (id) => API.patch(`/movie/${id}/favourite`);

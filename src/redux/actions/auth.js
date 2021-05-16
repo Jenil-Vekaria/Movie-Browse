@@ -26,3 +26,17 @@ export const signUp = (formData, history) => async (dispatch) => {
         return message;
     }
 };
+
+
+export const updateProfile = (formData, history) => async (dispatch) => {
+    try {
+        const { data } = await api.updateProfile(formData);
+
+        dispatch({ type: "AUTH", data });
+        history.push('/search');
+
+    } catch (error) {
+        const { data: { message } } = error.response;
+        return message;
+    }
+};
