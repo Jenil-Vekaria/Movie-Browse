@@ -42,6 +42,33 @@
 	border: none;
 }
 
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: inherit;
+}
+
+.credit {
+	display: flex;
+	justify-content: center;
+}
+
+.footer {
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: fixed;
+}
+
+.attribution {
+	width: 150px;
+}
+
 @media only screen and (max-width: 750px) {
 	.movies-container {
 		margin-left: 0px;

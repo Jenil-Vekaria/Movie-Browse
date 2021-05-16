@@ -117,10 +117,12 @@ export const MovieTab = ({ location: { search } }) => {
                                 <MovieFilter selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} history={history} />
                                 <MovieBrowser categoryIndex={categoryIndex} setCategoryIndex={setCategoryIndex} selectedGenre={selectedGenre} showFilter={showFilter} setShowFilter={setShowFilter} queryMovieSearch={queryMovieSearch} pageNumber={pageNumber} history={history} />
                             </div>
+
+
+
                         </>
                     )
             }
-
         </div>
     );
 };

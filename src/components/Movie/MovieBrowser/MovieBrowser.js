@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MovieCategory } from '../MovieCategory/MovieCategory';
 import { WindowSize } from '../../../util/WindowSize';
+import { FaGithub } from "react-icons/fa";
 
 import './styles.css';
 import { Pagination } from '../../Pagination/Pagination';
@@ -63,6 +64,23 @@ export const MovieBrowser = ({ categoryIndex, setCategoryIndex, selectedGenre, s
             {
                 totalPage > 1 ? <Pagination queryMovieSearch={queryMovieSearch} totalPage={totalPage} pageNumber={pageNumber} history={history} /> : null
             }
+
+            <footer className="footer">
+                <a href="https://github.com/Jenil-Vekaria" target="_blank" rel="noreferrer noopener">
+                    <span className="credit">
+                        <h6> Built by Jenil Vekaria</h6>
+                        <FaGithub size={20} style={{ marginLeft: 5 }} />
+                    </span>
+
+                </a>
+                <h6>Powered by</h6>
+                <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer noopener">
+                    <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"
+                        alt="The Movie DB Attribution"
+                        className="attribution" />
+                </a>
+
+            </footer>
 
         </div >
     );
