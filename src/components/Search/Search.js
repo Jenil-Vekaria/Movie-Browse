@@ -52,7 +52,7 @@ export const Search = () => {
                     userProfile ?
                         (
                             <div className="profile-image" onClick={() => history.push('/user')}>
-                                {userProfile.result.username.charAt(0)}
+                                {userProfile.result.username}
                             </div>
                         ) :
                         (

@@ -21,12 +21,11 @@
 }
 
 .profile-image {
-	width: 40px;
-	height: 40px;
-	background-color: rgba(100, 43, 192, 0.8);
-	border-radius: 50%;
-	font-size: 20px;
-	font-weight: 600;
+	padding: 3px 15px;
+	font-weight: 400;
+	background-color: var(--purple);
+	border-radius: 20px;
+	font-size: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

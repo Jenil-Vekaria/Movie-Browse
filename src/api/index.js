@@ -17,7 +17,7 @@
 import axios from 'axios';
 
 const MOVIEAPI = axios.create({ baseURL: `https://api.themoviedb.org/3` });
-const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({ baseURL: "https://entertainmentmovie.herokuapp.com" });
 
 API.interceptors.request.use((req) => {
     const userProfile = localStorage.getItem('profile');
