@@ -43,17 +43,17 @@ export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history })
 
     const handlePageSelect = (e) => {
         const index = e.target.value;
-        const page = e.target.innerHTML;
+        const pageButton = e.target.innerHTML;
+        let pageNumber = currentPage;
 
         let { pathname } = history.location;
 
-        const searchQuery = queryMovieSearch ? `movieName=${queryMovieSearch}&page=${page}` : `page=${page}`;
-
-
-        if (currentPage === parseInt(page))
+        if (currentPage === parseInt(pageButton))
             return;
 
-        if (page !== '...') {
+
+        if (pageButton !== '...') {
+            const searchQuery = queryMovieSearch ? `movieName=${queryMovieSearch}&page=${pageButton}` : `page=${pageButton}`;
             history.push(`${pathname}?${searchQuery}`);
         }
         else {
@@ -62,10 +62,21 @@ export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history })
                 higher '...' clicked = move ahead <totalNumberToDisplay> pages from currentPage
             */
             if (index === 1) {
-                history.push(`${pathname}?${searchQuery}`);
+                pageNumber -= totalNumberToDisplay;
             } else {
-                history.push(`${pathname}?${searchQuery}`);
+                pageNumber += totalNumberToDisplay;
             }
+
+            if (pageNumber <= 0)
+                pageNumber = 1;
+
+            if (pageNumber >= totalPage)
+                pageNumber = totalPage;
+
+            const searchQuery = queryMovieSearch ? `movieName=${queryMovieSearch}&page=${pageNumber}` : `page=${pageNumber}`;
+
+            history.push(`${pathname}?${searchQuery}`);
+
         }
     };
 
@@ -85,7 +96,7 @@ export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history })
     return (
         <nav>
             <ul className="pagination justify-content-center">
-                <li className="btn-previous disabled page-link" value="-1" onClick={handlePreviousNext}>
+                <li className={`btn-previous page-link ${currentPage <= 1 ? 'disabled' : ''}`} value="-1" onClick={handlePreviousNext}>
                     Previous
                 </li>
                 {
@@ -98,7 +109,7 @@ export const Pagination = ({ queryMovieSearch, totalPage, pageNumber, history })
                     ))
                 }
 
-                <li className="btn-next page-link" value="1" onClick={handlePreviousNext}>
+                <li className={`btn-next page-link ${currentPage >= totalPage ? 'disabled' : null}`} value="1" onClick={handlePreviousNext}>
                     Next
                 </li>
             </ul>
