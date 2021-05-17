@@ -77,7 +77,7 @@ This is an example of how you may give instructions on setting up your project l
 
 1. Get a free API from [The Movie DB](https://developers.themoviedb.org/3/getting-started) API to fetch all the movies
 
-2. Replace this with your API Key
+2. Replace this with your API Key in the <strong>.env</strong> file
    ```sh
    REACT_APP_MOVIE_DB_API_KEY={API_KEY}
    ```
