@@ -66,7 +66,7 @@ This project was built using the MERN Stack (MongoDB, Express, React, NodeJs)
 
 <!-- GETTING STARTED -->
 ## Getting Started
-This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
+This will guide you through how to setup the project locally and get The Movie DB API key
 
 ### Prerequisites
 - Clone this repo
