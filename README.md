@@ -1,72 +1,109 @@
-# Movie App
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Netlify Status](https://api.netlify.com/api/v1/badges/59daef64-c743-4641-8eb7-1a685f50a7ae/deploy-status)](https://app.netlify.com/sites/entertainmentmovie/deploys)
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://entertainmentmovie.netlify.app/">
+    <img src="public/movieApp.svg" alt="Logo" width="60" height="60">
+  </a>
 
-In the project directory, you can run:
+  <h3 align="center">Entertainment Movie</h3>
 
-### `npm start`
+  <p align="center">
+    📽️ Amazing Movie Browsing React App 📽️
+    <br />
+    <br />
+    <a href="https://entertainmentmovie.netlify.app/">View Demo</a>
+  </p>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
+# About The Project
 
-### `npm test`
+  <a href="https://entertainmentmovie.netlify.app/">
+    <img src="images/project_gif.gif" alt="Logo">
+  </a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Amazing Movie Browsing app with beautiful UI built using MERN stack.
 
-### `npm run build`
+#### Current Features:
+- View the most <strong>Popular</strong>, <strong>Top Rated</strong>, <strong>Upcoming</strong>, <strong>Latets</strong> movies
+- Filter movies by different generes
+- Search for movies
+- View movie information (Description, Generes, Release Year, Cast, Gallery) and similar movies
+- SignIn or SignUp to add movies to your watchlist
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Feature Backlog:
+- Add TV Shows
+- Share your Movie or TV Show watchlist with other people
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project was built using the MERN Stack (MongoDB, Express, React, NodeJs)
 
-### `npm run eject`
+#### Backend
+- Built a RESTful API using NodeJs and Express
+  - API is used for SignIn/SignUp user and favourite movies which is stored on MongoDB.
+  - Implemented JWT Authentication for SignIn/SignUp
+  - API is hosted on Heroku
+  - API Status: ![Heroku](https://heroku-badge.herokuapp.com/?app=entertainmentmovie)
+- Used the [The Movie DB](https://developers.themoviedb.org/3/getting-started) API to fetch all the movies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Frontend
+- Built using React and Bootstrap
+- UI Design from Dribble
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- GETTING STARTED -->
+## Getting Started
+This will guide you through how to setup the project locally and get The Movie DB API key
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Prerequisites
+- Clone this repo
+- `npm install` to install all req'd dependencies
+- `npm start` to start the local server (this project uses create-react-app)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Get a free API from [The Movie DB](https://developers.themoviedb.org/3/getting-started) API to fetch all the movies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Replace this with your API Key in the <strong>.env</strong> file
+   ```sh
+   REACT_APP_MOVIE_DB_API_KEY={API_KEY}
+   ```
+  
+### Project Dependencies
+- [axios](https://www.npmjs.com/package/axios)
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode)
+- [react-image-gallery](https://www.npmjs.com/package/react-image-gallery)
+- [redux](https://www.npmjs.com/package/redux)
+- [react-icons](https://www.npmjs.com/package/react-icons)
+- [react-dom](https://www.npmjs.com/package/react-dom)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+<!-- LICENSE -->
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Distributed under the MIT License. See `LICENSE` for more information.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- CONTACT -->
+## Contact
 
-### Making a Progressive Web App
+Jenil Vekaria - [GitHub](https://github.com/Jenil-Vekaria) / [LinkedIn](https://www.linkedin.com/in/jenil-vekaria)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [The Movie DB API](https://developers.themoviedb.org/3/getting-started)
+* [Bootstrap](https://getbootstrap.com)
+* [UI Design](https://dribbble.com/shots/2983800-Online-cinema/attachments/621936)
